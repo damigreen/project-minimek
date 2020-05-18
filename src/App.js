@@ -10,7 +10,7 @@ import {
   Container,
 } from 'semantic-ui-react'
 
-const UnitInfo = () => <div>Unit info content</div>
+const UnitInfo = () => <div> Unit info content</div>
 const Pilots = () => <div>Pilots content</div>
 const Mechs = () => <div>Mechs content</div>
 const UnitOrganization = () => <div>Unit Organization content</div>
