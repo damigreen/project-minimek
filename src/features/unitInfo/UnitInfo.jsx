@@ -25,7 +25,7 @@ const UnitInfo = () => {
                     <Dropdown 
                         selection 
                         options={FACTIONS}
-                        value="wd" />
+                        value="lc" />
                 </Form.Field>
             </Form>
         </Segment>

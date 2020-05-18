@@ -1,5 +1,5 @@
-import React from 'react'
-import { Menu } from 'semantic-ui-react'
+import React, { Component } from 'react';
+import { Menu } from 'semantic-ui-react';
 import ToggleDisplay from 'react-toggle-display';
 
 import Tab from './Tab';
