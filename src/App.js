@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 import SampleComponent from './SampleComponent';
 import TabBarContainer from './features/tabs/TabBarContainer';
+import UnitInfo from './features/unitInfo';
+import Pilots from './features/unitInfo';
+import Mechs from './features/mechs/Mechs';
+import UnitOrganization from './features/unitOrganization/UnitOrganization';
 
 import './App.css';
-import logo from './logos.svg'
+import logo from './logos.svg';
+
 
 import {
   Header,
   Container,
 } from 'semantic-ui-react'
-
-const UnitInfo = () => <div> Unit info content</div>
-const Pilots = () => <div>Pilots content</div>
-const Mechs = () => <div>Mechs content</div>
-const UnitOrganization = () => <div>Unit Organization content</div>
 
 class App extends Component {
     
