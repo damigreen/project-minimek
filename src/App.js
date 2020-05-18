@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import SampleComponent from './SampleComponent';
 import TabBarContainer from './features/tabs/TabBarContainer';
-import UnitInfo from './features/unitInfo';
-import Pilots from './features/unitInfo';
+import UnitInfo from './features/unitInfo/UnitInfo';
+import Pilots from './features/pilots/Pilot';
 import Mechs from './features/mechs/Mechs';
 import UnitOrganization from './features/unitOrganization/UnitOrganization';
 
@@ -34,7 +33,6 @@ class App extends Component {
         <Container>
             <TabBarContainer tabs={tabs} size='massive' />
         </Container>
-        <SampleComponent />
         </div>
         )
     }
