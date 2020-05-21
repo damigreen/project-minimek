@@ -1,4 +1,5 @@
-import { connect } from 'react-redux'
+import React, { Component } from 'react';
+import { connect } from 'react-reduxc'
 
 import TabBar from './TabBar';
 
@@ -11,7 +12,7 @@ const mapState = (state) => {
     return { currentTab }
 }
 
-// dispatch 
+// dispatch
 const actions = { onTabClick : selectTab };
 
 export default connect(mapState, actions)(TabBar);
