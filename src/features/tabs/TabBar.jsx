@@ -1,12 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Menu } from 'semantic-ui-react';
 import ToggleDisplay from 'react-toggle-display';
 
 import Tab from './Tab';
 
 const TabBar = (props) => {
-  console.log(props)
-  
   const { tabs, currentTab, onTabClick, ...otherProps } = props
 
   const tabItems = tabs.map(tabInfo => {
