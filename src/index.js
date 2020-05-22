@@ -4,7 +4,7 @@ import './index.css';
 import { Provider } from 'react-redux';
 import "semantic-ui-css/semantic.min.css";
 
-import configureStore from '../src/store/configureStore';
+import configureStore from './app/store/configureStore';
 
 const store = configureStore();
 
@@ -14,7 +14,7 @@ const rootEl = document.getElementById('root')
 // create reusable render metheod
 let render = () => {
   // Dynamically import main App component, and rneder it
-  const App = require('./App').default
+  const App = require('./app/layout/App').default
 
   ReactDOM.render(
       <Provider store={store}>
