@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import {
     Form,
     Dropdown,
     Segment
 } from 'semantic-ui-react';
+
+import { selectUnitInfo } from '../unitInfoSelector';
 
 const FACTIONS = [
     // fill the rest later
@@ -11,26 +14,37 @@ const FACTIONS = [
     {value : "wd", text : "Wolf's Dragoons"}
 ]
 
-const UnitInfo = () => {
+const mapState = state => ({
+  unitInfo : selectUnitInfo(state)
+})
+
+class UnitInfo extends Component {
+
+  render() {
+    const {unitInfo} = this.props;
+    const {name, affiliation} = unitInfo;
+
+    console.log(this.props);
 
     return(
         <Segment attached="bottom">
             <Form sizee="large">
                 <Form.Field name="name" width={6} >
                     <label>Unit Name</label>
-                    <input placeholder="Name" value="Black Widow company" />
+                    <input placeholder="Name" value={name} />
                 </Form.Field>
                 <Form.Field name="Affiliation" width={6} >
                     <label>Affiliation</label>
                     <Dropdown 
                         selection 
                         options={FACTIONS}
-                        value="lc" />
+                        value={affiliation} />
                 </Form.Field>
             </Form>
         </Segment>
     )
+  }
 }
 
-export default UnitInfo;
+export default connect(mapState)(UnitInfo);
 
