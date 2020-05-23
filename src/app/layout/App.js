@@ -4,6 +4,7 @@ import UnitInfo from '../../features/unitInfo/UnitInfo';
 import Pilots from '../../features/pilots/Pilots/';
 import Mechs from '../../features/mechs/Mechs/';
 import UnitOrganization from '../../features/unitOrganization/UnitOrganization';
+import Tools from '../../features/tools/Tools/';
 
 import './App.css';
 import logo from './logos.svg';
@@ -17,10 +18,11 @@ class App extends Component {
     
     render() {
         const tabs = [
-            { name: 'UnitInfo', label: 'Unit Info', component: UnitInfo },
+            { name: 'unit info', label: 'Unit Info', component: UnitInfo },
             { name: 'pilots', label: 'Pilots', component: Pilots },
             { name: 'mechs', label: 'Mechs', component: Mechs },
-            { name: 'UnitOrganization', label: 'Unit Organization', component: UnitOrganization }
+            { name: 'unit organization', label: 'Unit Organization', component: UnitOrganization },
+            { name: 'tools', label: 'Tools', component: Tools }
         ]
 
         

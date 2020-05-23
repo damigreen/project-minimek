@@ -8,7 +8,7 @@ export default class MechsList extends Component {
 
   render() {
     const {mechs = []} = this.props;
-    console.log(mechs)
+    // console.log(mechs)
 
 
     const mechRows = mechs.map(mech => (

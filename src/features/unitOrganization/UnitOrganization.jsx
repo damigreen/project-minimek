@@ -12,7 +12,7 @@ const UnitOrganization = () => {
         <Segment>
             <Grid>
                 <Grid.Column width={10}>
-                    <Header as="h3">Unit of UnitOrganization</Header>
+                    <Header as="h3">Units of Organization</Header>
                     <List size="large">
                         <List.Item>
                             <List.Icon name="cubes" />
