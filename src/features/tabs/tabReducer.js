@@ -6,7 +6,6 @@ const initialState = {
 };
 
 export function selectTab(state, payload) {
-    console.log(payload)
     return {
         currentTab: payload.tabName,
     };
