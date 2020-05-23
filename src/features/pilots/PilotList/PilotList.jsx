@@ -8,6 +8,7 @@ import PilotListRow from './PilotListRow'
 export default class PilotList extends Component {
     render() {
         const {pilots} = this.props;
+        // console.log(this.props)
 
         const pilotRows = pilots.map(pilot => (
             <PilotListRow pilot={pilot} key={pilot.name} />

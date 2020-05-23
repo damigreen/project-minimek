@@ -2,7 +2,7 @@ import React from 'react';
 import { Table } from 'semantic-ui-react';
 
 const PilotListRow = ({pilot={}}) => {
-  console.log(pilot)
+  // console.log(pilot)
 
     const {
         name = "",

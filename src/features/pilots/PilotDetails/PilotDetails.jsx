@@ -22,7 +22,7 @@ const MECHS = [
 
 
 const PilotDetails = ({pilot={}}) => {
-  console.log(pilot)
+  // console.log(pilot)
   
   const {
     name = "",
