@@ -6,11 +6,6 @@ import {
 } from 'semantic-ui-react';
 
 import { loadUnitData } from '../toolActions';
-// import { displayData } from '../toolReducer'
-
-// const mapState = state => ({
-//   data: displayData(state)
-// });
 
 const actions = {loadUnitData}
 
