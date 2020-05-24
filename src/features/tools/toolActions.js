@@ -6,6 +6,7 @@ export function loadUnitData() {
     return (dispatch, getState) => {
       fetchData()
         .then(data => {
+          console.log(data)
           dispatch({
             type: DATA_LOADED,
             payload: data
