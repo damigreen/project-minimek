@@ -10,12 +10,14 @@ export function loadData(state, payload) {
   const session = orm.session(state);
 
   // Get a reference to the correct version of the Pilot class for this session
-  const { Pilot } = session;
+  const { Pilot, Mech, MechDesign } = session;
   
-  const { pilots } = payload;
-  
+  const { pilots, designs, mechs } = payload;
+
   // Queue up creation commands for each pilot entry
-  pilots.forEach(pilot => Pilot.parse(pilot))
+  pilots.forEach(pilot => Pilot.parse(pilot));
+  mechs.forEach(mech => Mech.parse(mech));
+  designs.forEach(design => MechDesign.parse(design));
   
   // apply the queue update and return the updated 'tables'
   return session.state;
