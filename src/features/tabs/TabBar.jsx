@@ -10,10 +10,6 @@ const TabBar = (props) => {
   const tabItems = tabs.map(tabInfo => {
     const { name, label } = tabInfo;
 
-
-    console.log(currentTab)
-    console.log(name)
-
     return (
       <Tab
         key={name}
@@ -33,7 +29,6 @@ const TabBar = (props) => {
       </ToggleDisplay>
     );
   });
-
   
   return (
     <div>
@@ -43,8 +38,7 @@ const TabBar = (props) => {
 
       {tabPanels}
     </div>
-  )
-  
+  )  
 }
 
 export default TabBar
