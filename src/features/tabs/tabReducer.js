@@ -2,7 +2,7 @@ import {createReducer} from "../../common/utils/reducerUtils";
 import {TAB_SELECTED} from "./tabConstants";
 
 const initialState = {
-    currentTab : "UnitInfo"
+    currentTab : "unitInfo"
 };
 
 export function selectTab(state, payload) {
