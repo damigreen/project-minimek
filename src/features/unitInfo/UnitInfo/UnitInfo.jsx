@@ -24,7 +24,7 @@ class UnitInfo extends Component {
     const {unitInfo} = this.props;
     const {name, affiliation} = unitInfo;
 
-    console.log(this.props);
+    console.log(unitInfo)
 
     return(
         <Segment attached="bottom">
@@ -47,4 +47,3 @@ class UnitInfo extends Component {
 }
 
 export default connect(mapState)(UnitInfo);
-

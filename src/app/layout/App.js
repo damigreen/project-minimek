@@ -15,17 +15,17 @@ import {
 } from 'semantic-ui-react'
 
 class App extends Component {
+
     
     render() {
         const tabs = [
-            { name: 'unit info', label: 'Unit Info', component: UnitInfo },
+            { name: 'unitInfo', label: 'Unit Info', component: UnitInfo },
             { name: 'pilots', label: 'Pilots', component: Pilots },
             { name: 'mechs', label: 'Mechs', component: Mechs },
-            { name: 'unit organization', label: 'Unit Organization', component: UnitOrganization },
+            { name: 'unitOrganization', label: 'Unit Organization', component: UnitOrganization },
             { name: 'tools', label: 'Tools', component: Tools }
         ]
-
-        
+                
         return (
         <div className="App">
             <div className="App-header">

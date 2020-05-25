@@ -8,4 +8,3 @@ const orm = new ORM({
 orm.register(Pilot)
 
 export default orm;
-

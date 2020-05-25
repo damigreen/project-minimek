@@ -5,7 +5,7 @@ import { Table } from 'semantic-ui-react';
 import PilotListHeader from './PilotListHeader'
 import PilotListRow from './PilotListRow'
 
-export default class PilotList extends Component {
+class PilotList extends Component {
     render() {
         const {pilots} = this.props;
         // console.log(this.props)
@@ -24,3 +24,5 @@ export default class PilotList extends Component {
         )
     }
 }
+
+export default PilotList;

@@ -8,7 +8,11 @@ const TabBar = (props) => {
   const { tabs, currentTab, onTabClick, ...otherProps } = props
 
   const tabItems = tabs.map(tabInfo => {
-    const { name, label } = tabInfo;     
+    const { name, label } = tabInfo;
+
+
+    console.log(currentTab)
+    console.log(name)
 
     return (
       <Tab
