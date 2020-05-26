@@ -5,11 +5,15 @@ import { getWeightClass } from '../mechSelector';
 
 const MechDetails = ({mech={}}) => {
   const {
-      id = "",
-      name = "",
-      type = "",
-      weight = "",
+    id = '',
+    type = '',
+    mechType = {},
   } = mech;
+  
+  const {
+    name = '',
+    weight = '',
+  } = mechType;
 
   const weightClass = getWeightClass(weight);
   
