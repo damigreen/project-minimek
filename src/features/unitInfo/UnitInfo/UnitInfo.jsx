@@ -24,8 +24,6 @@ class UnitInfo extends Component {
     const {unitInfo} = this.props;
     const {name, affiliation} = unitInfo;
 
-    console.log(unitInfo)
-
     return(
         <Segment attached="bottom">
             <Form sizee="large">

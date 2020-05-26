@@ -52,11 +52,6 @@ const mapState = state => {
 
     return pilots;
   })
-
-  
-
-
-
   // return array of all pilot obhects, as a prop
   return {pilots}
 }
@@ -65,10 +60,10 @@ export class Pilots extends Component {
 
   render() {
     const {pilots = []} = this.props;
+    // console.log(pilots)
 
     // use the first pilot as the 'current' one for display
     const currentPilot = pilots[0] || {};
-
 
     return (
         <Segment>
