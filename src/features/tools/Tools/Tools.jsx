@@ -14,7 +14,6 @@ class Tools extends Component {
     const {loadUnitData} = this.props;
   
     const data = this.props;
-    console.log(data)
 
     return (
       <Segment attached="bottom">

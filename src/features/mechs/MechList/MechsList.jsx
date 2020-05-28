@@ -7,12 +7,14 @@ import MechsListRow from './MechsListRow';
 export default class MechsList extends Component {
 
   render() {
-    const {mechs = []} = this.props;
-    // console.log(mechs)
-
-
+    const { mechs = [], onMechClick } = this.props;
+    
     const mechRows = mechs.map(mech => (
-      <MechsListRow mech={mech} key={mech.id} />
+      <MechsListRow
+        mech={mech}
+        key={mech.id}
+        onMechClick={onMechClick}
+         />
     ));
 
     return (

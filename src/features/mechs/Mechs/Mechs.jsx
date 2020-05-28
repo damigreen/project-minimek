@@ -11,11 +11,16 @@ import MechDetails from '../MechDetails'
 
 import orm from '../../../app/orm/';
 
+import { selectMech } from '../mechsActions'
+import { selectCurrentMech } from '../mechSelectors';
+
 
 const mapState = (state) => {
   const session = orm.session(state.entities);
 
   const {Mech} = session;
+
+  const currentMech = selectCurrentMech(state);
 
   const mechs = Mech.all().toModelArray().map(mechModel => {
     const mech = {
@@ -32,26 +37,33 @@ const mapState = (state) => {
     return mech;
   })
   
-  return {mechs}
+  return {mechs, currentMech}
 }
+
+const actions = {
+  selectMech
+}
+
 
 class Mechs extends Component {
   
   render () {
-    const {mechs=[]} = this.props;
+    const {mechs=[], currentMech, selectMech} = this.props;
 
-    const currentMech = mechs[0] || {}
+    const currentMechEntry = mechs.find(mech => mech.id === currentMech)
 
     return (
       <Segment>
         <Grid>
           <Grid.Column width={10}>
             <Header as="h3">Mechs List</Header>
-              <MechList mechs={mechs} />
+              <MechList
+                mechs={mechs}
+                onMechClick={selectMech} />
           </Grid.Column>
           <Grid.Column width={6}>
             <Segment>
-              <MechDetails mech={currentMech} />
+              <MechDetails mech={currentMechEntry} />
             </Segment>
           </Grid.Column>
         </Grid>
@@ -60,4 +72,4 @@ class Mechs extends Component {
   }
 }
 
-export default connect(mapState)(Mechs);
+export default connect(mapState, actions)(Mechs);

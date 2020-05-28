@@ -3,9 +3,9 @@ import { Table } from 'semantic-ui-react';
 
 import { getWeightClass } from '../mechSelectors';
 
-const MechsListRow = ({mech={}}) => {
+const MechsListRow = ({ mech={}, onMechClick }) => {
   const {
-    id = '',
+    id = null,
     type = '',
     mechType = {},
   } = mech;
@@ -17,8 +17,9 @@ const MechsListRow = ({mech={}}) => {
 
   const weightClass = getWeightClass(weight);
 
+
   return (
-      <Table.Row>
+      <Table.Row onClick={() => onMechClick(id)}>
         <Table.Cell>
           {id}
         </Table.Cell>
