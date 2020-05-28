@@ -1,7 +1,7 @@
 import React from 'react';
 import { Table } from 'semantic-ui-react';
 
-import { getWeightClass } from '../mechSelector';
+import { getWeightClass } from '../mechSelectors';
 
 const MechsListRow = ({mech={}}) => {
   const {
