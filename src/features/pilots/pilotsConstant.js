@@ -1,1 +1,1 @@
-export const PILOT_SELECT = 'PILOT_SELECt';
+export const PILOT_SELECT = 'PILOT_SELECT';

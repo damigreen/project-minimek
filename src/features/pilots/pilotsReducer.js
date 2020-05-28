@@ -6,7 +6,9 @@ const initialState = {
   currentPilot : null
 }
 
+
 export const selectPilot = (state, payload) => {
+
   const prevSelectedPilot = state.currentPilot;
   const newSelectedPilot = payload.currentPilot;
 
@@ -15,7 +17,7 @@ export const selectPilot = (state, payload) => {
   return {
     // Deselect entirely if it's a second click on the same pilot,
     // otherwise go ahead and select the one that was clicked
-    currnetPilot : isSamePilot ? null : newSelectedPilot
+    currentPilot : isSamePilot ? null : newSelectedPilot
   }
 }
 

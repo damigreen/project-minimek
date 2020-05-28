@@ -14,9 +14,9 @@ import {
   Container,
 } from 'semantic-ui-react'
 
+
 class App extends Component {
 
-    
     render() {
         const tabs = [
             { name: 'unitInfo', label: 'Unit Info', component: UnitInfo },

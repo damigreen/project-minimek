@@ -7,10 +7,14 @@ import PilotListRow from './PilotListRow'
 
 class PilotList extends Component {
     render() {
-        const {pilots} = this.props;
+        const {pilots, onPilotClicked, currentPilot} = this.props;
 
         const pilotRows = pilots.map(pilot => (
-            <PilotListRow pilot={pilot} key={pilot.name} />
+            <PilotListRow
+               key={pilot.name}
+               pilot={pilot}
+               onPilotClicked={onPilotClicked}
+               selected={pilot.id === currentPilot} />
         ))
 
         return (

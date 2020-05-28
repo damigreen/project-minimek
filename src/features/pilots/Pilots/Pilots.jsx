@@ -10,7 +10,11 @@ import {
 import PilotList from '../PilotList'
 import PilotDetails from '../PilotDetails';
 
+import { selectPilot } from '../pilotsActions';
+import { selectCurrentPilot } from '../pilotsSelector';
+
 import orm from '../../../app/orm/';
+
 
 const mapState = state => {
   // Create a Redux-ORM Session from our 'entities' slice, 
@@ -29,6 +33,7 @@ const mapState = state => {
   // plain JS objects that are actually in the store.
   // The toRefArray() method will give us an array of the
   // plain JS objects for each item in the QuerySet.
+  const currentPilot = selectCurrentPilot(state);
 
 
   const pilots = Pilot.all().toModelArray().map(pilotModel => {
@@ -41,41 +46,48 @@ const mapState = state => {
     // Look up the associated Mech instance using the foreign-key
     // field that we defined in the Pilot Model class
     const {mech} = pilotModel;
-
+    
     // If there actually is an associated mech, include the
     // mech type's ID as a field in the data passed to the component
     if(mech && mech.type) {
       pilot.mechType = mech.type.id;
-
-      return pilot;
+      
     }
 
-    return pilots;
+    return pilot;
   })
+
   // return array of all pilot obhects, as a prop
-  return {pilots}
+  return {pilots, currentPilot}
 }
+
+const actions = {
+  selectPilot,
+}
+
 
 export class Pilots extends Component {
 
   render() {
-    const {pilots = []} = this.props;
-    // console.log(pilots)
+    const {pilots = [], selectPilot, currentPilot} = this.props;
 
-    // use the first pilot as the 'current' one for display
-    const currentPilot = pilots[0] || {};
+    // only displays the selected pilot
+    const currentPilotEntry = pilots.find(pilot => pilot.id === currentPilot)
 
     return (
         <Segment>
             <Grid>
                 <Grid.Column width={10}>
                     <Header as="h3">Pilot List</Header>
-                    <PilotList pilots={pilots} />
+                    <PilotList 
+                      pilots={pilots}
+                      onPilotClicked={selectPilot}
+                      currentPilot={currentPilot} />
                 </Grid.Column>
                 <Grid.Column width={6}>
                   <Header as="h3">Pilot Details</Header>
                   <Segment>
-                    <PilotDetails pilot={currentPilot} />
+                    <PilotDetails pilot={currentPilotEntry} />
                   </Segment>
                 </Grid.Column>
             </Grid>
@@ -84,4 +96,4 @@ export class Pilots extends Component {
   }
 }
 
-export default connect(mapState)(Pilots);
+export default connect(mapState, actions)(Pilots);

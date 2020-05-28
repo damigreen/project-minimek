@@ -39,7 +39,6 @@ class Mechs extends Component {
   
   render () {
     const {mechs=[]} = this.props;
-    console.log(mechs);
 
     const currentMech = mechs[0] || {}
 
