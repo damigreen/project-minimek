@@ -58,7 +58,7 @@ const PilotDetails = ({pilot={}}) => {
         <input
           placeholder="name"
           value={name}
-          dissabled={true}
+          disabled={true}
           />
       </Form.Field>
       <Form.Field name="rank" width={16}>
@@ -68,7 +68,7 @@ const PilotDetails = ({pilot={}}) => {
           selection
           options={RANKS}
           value={rank}
-          dissabled={true}
+          disabled={true}
           />
       </Form.Field>
       <Form.Field name="age" width={6}>
@@ -76,21 +76,21 @@ const PilotDetails = ({pilot={}}) => {
         <input
           placeholder="Age"
           value={age}
-          dissabled={true}
+          disabled={true}
           />
       </Form.Field>
       <Form.Field name="gunnery" width={6}>
         <label>Gunnery</label>
         <input
           value={gunnery}
-          dissabled={true}
+          disabled={true}
           />
       </Form.Field>
       <Form.Field name="piloting" width={6}>
         <label>Piloting</label>
         <input
           value={piloting}
-          dissabled={true}
+          disabled={true}
           />
       </Form.Field>
       <Form.Field name="mech" width={16}>
@@ -100,7 +100,7 @@ const PilotDetails = ({pilot={}}) => {
           selection
           options={MECHS}
           value={mechType}
-          dissabled={true}
+          disabled={true}
           />
       </Form.Field>
     </Form>       

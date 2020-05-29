@@ -1,9 +1,37 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Table } from 'semantic-ui-react';
 
 import { getWeightClass } from '../mechSelectors';
 
-const MechsListRow = ({ mech={}, onMechClick }) => {
+import orm from '../../../app/orm';
+
+const mapState = (state, ownProps) => {
+  const session = orm.session(state.entities);
+  const {Mech} = session;
+
+  let mech;
+
+  if(Mech.idExists(ownProps.mechID)) {
+    const mechModel = Mech.withId(ownProps.mechID)
+
+    mech = {
+      // Copy the data from the plain JS object
+      ...mechModel.ref,
+      // Provide a default object with a copy of the relations's data
+      mechType : {}
+    }
+
+    if(mechModel.type) {
+      mech.mechType = {...mechModel.type.ref }
+    }
+  }
+  
+  return {mech}
+}
+
+
+const MechsListRow = ({ mech = {}, onMechClick, selected }) => {
   const {
     id = null,
     type = '',
@@ -19,7 +47,7 @@ const MechsListRow = ({ mech={}, onMechClick }) => {
 
 
   return (
-      <Table.Row onClick={() => onMechClick(id)}>
+      <Table.Row onClick={() => onMechClick(id)} active={selected}>
         <Table.Cell>
           {id}
         </Table.Cell>
@@ -39,4 +67,4 @@ const MechsListRow = ({ mech={}, onMechClick }) => {
   )
 }
 
-export default MechsListRow;
+export default connect(mapState)(MechsListRow);
