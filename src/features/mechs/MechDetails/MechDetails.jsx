@@ -1,7 +1,37 @@
 import React from 'react';
 import { Form } from 'semantic-ui-react';
+import { connect } from 'react-redux';
 
-import { getWeightClass } from '../mechSelectors';
+import { getWeightClass, selectCurrentMech } from '../mechSelectors';
+
+import orm from '../../../app/orm';
+
+
+const mapState = (state) => {
+  let mech;
+
+  const currentMech = selectCurrentMech(state);
+
+  const session = orm.session(state.entities);
+
+  const {Mech} = session;
+
+  if(Mech.idExists(currentMech)) {
+    const mechModel = Mech.withId(currentMech);
+    mech = {
+      // Copy the data from the plain JS Object
+      ...mechModel.ref,
+      mechType : {}
+    }
+
+    if(mechModel.type) {
+      mech.mechType = mechModel.type.ref;
+    }
+  }
+
+  return {mech}
+}
+
 
 const MechDetails = ({ mech={}} ) => {
   const {
@@ -24,6 +54,7 @@ const MechDetails = ({ mech={}} ) => {
           <input 
           placeholder="ID"
           value={id}
+          disabled={true}
           />
       </Form.Field>
       <Form.Field name="name" width={16} >
@@ -31,6 +62,7 @@ const MechDetails = ({ mech={}} ) => {
           <input 
           placeholder="Name"
           value={name}
+          disabled={true}
           />
       </Form.Field>
       <Form.Field name="model" width={6} >
@@ -38,18 +70,21 @@ const MechDetails = ({ mech={}} ) => {
           <input 
           placeholder="Model"
           value={type}
+          disabled={true}
           />
       </Form.Field>
       <Form.Field name="weight" width={6} >
           <label>Weight</label>
           <input 
           value={weight}
+          disabled={true}
           />
       </Form.Field>
       <Form.Field name="class" width={6} >
           <label>Class</label>
           <input 
           value={weightClass}
+          disabled={true}
           />
       </Form.Field>
 
@@ -57,4 +92,4 @@ const MechDetails = ({ mech={}} ) => {
   )
 }
 
-export default MechDetails;
+export default connect(mapState)(MechDetails);

@@ -5,6 +5,7 @@ import _ from 'lodash';
 
 import orm from '../../../app/orm/';
 
+
 const mapState = (state, ownProps) => {
   const session = orm.session(state.entities);
   const {Pilot} = session;

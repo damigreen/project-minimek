@@ -12,15 +12,12 @@ import MechDetails from '../MechDetails'
 import orm from '../../../app/orm/';
 
 import { selectMech } from '../mechsActions'
-import { selectCurrentMech } from '../mechSelectors';
 
 
 const mapState = (state) => {
   const session = orm.session(state.entities);
 
   const {Mech} = session;
-
-  const currentMech = selectCurrentMech(state);
 
   const mechs = Mech.all().toModelArray().map(mechModel => {
     const mech = {
@@ -37,7 +34,7 @@ const mapState = (state) => {
     return mech;
   })
   
-  return {mechs, currentMech}
+  return {mechs}
 }
 
 const actions = {
@@ -49,8 +46,7 @@ class Mechs extends Component {
   
   render () {
     const {mechs=[], currentMech, selectMech} = this.props;
-    
-    const currentMechEntry = mechs.find(mech => mech.id === currentMech)
+
 
     return (
       <Segment>
@@ -59,11 +55,12 @@ class Mechs extends Component {
             <Header as="h3">Mechs List</Header>
               <MechList
                 mechs={mechs}
-                onMechClick={selectMech} />
+                onMechClick={selectMech}
+                currentMech={currentMech} />
           </Grid.Column>
           <Grid.Column width={6}>
             <Segment>
-              <MechDetails mech={currentMechEntry} />
+              <MechDetails />
             </Segment>
           </Grid.Column>
         </Grid>
