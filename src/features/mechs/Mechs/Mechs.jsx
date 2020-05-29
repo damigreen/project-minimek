@@ -49,7 +49,7 @@ class Mechs extends Component {
   
   render () {
     const {mechs=[], currentMech, selectMech} = this.props;
-
+    
     const currentMechEntry = mechs.find(mech => mech.id === currentMech)
 
     return (
