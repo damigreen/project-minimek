@@ -1,10 +1,6 @@
 import { createReducer } from '../../common/utils/reducerUtils';
 import { DATA_LOADED } from '../tools/toolConstant';
-
-// const initialState = {
-//     name : 'Black Widow Company',
-//     affiliation : 'wd'
-// }
+import { UNIT_INFO_UPDATE } from './unitInfoConstants'
 
 const initialState = {
   name : "N/A",
@@ -17,6 +13,14 @@ export function dataLoaded(state, payload) {
   return unit;
 }
 
+function updateUnitInfo(state, payload) {
+  return {
+    ...state,
+    ...payload,
+  }
+}
+
 export default createReducer(initialState, {
-  [DATA_LOADED] : dataLoaded 
+  [DATA_LOADED] : dataLoaded,
+  [UNIT_INFO_UPDATE] : updateUnitInfo
 });
