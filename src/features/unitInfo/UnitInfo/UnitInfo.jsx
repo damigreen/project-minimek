@@ -20,7 +20,6 @@ const FACTIONS = [
     {value : "wd", text : "Wolf's Dragoons"},
 ];
 
-
 const mapState = state => ({
   unitInfo : selectUnitInfo(state)
 });
@@ -34,9 +33,15 @@ class UnitInfo extends Component {
 
   onAffiliationChanged = (e, result) => {
     const {name, value} = result;
-    console.log(name)
 
     const newValues = { [name] : value};
+    this.props.updateUnitInfo(newValues);
+  }
+
+  onNameChanged = (e) => {
+    const {name, value} = e.target;
+
+    const newValues = { [name] : value}
     this.props.updateUnitInfo(newValues);
   }
 
@@ -49,7 +54,11 @@ class UnitInfo extends Component {
             <Form sizee="large">
                 <Form.Field name="name" width={6} >
                     <label>Unit Name</label>
-                    <input placeholder="Name" value={name} />
+                    <input
+                      name="name"
+                      placeholder="Name"
+                      value={name}
+                      onChange={this.onNameChanged} />
                 </Form.Field>
                 <Form.Field name="Affiliation" width={6} >
                     <label>Affiliation</label>
