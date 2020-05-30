@@ -7,18 +7,38 @@ import {
 } from 'semantic-ui-react';
 
 import { selectUnitInfo } from '../unitInfoSelector';
+import { updateUnitInfo } from '../unitInfoActions';
 
 const FACTIONS = [
-    // fill the rest later
+    {value : "cc", text : "Capellan Confederation"},
+    {value : "dc", text : "Draconis Combine"},
+    {value : "elh", text : "Eridani Light Horse"},
+    {value : "fs", text : "Federated Suns"},
+    {value : "fwl", text : "Free Worlds League"},
+    {value : "hr", text : "Hansen's Roughriders"},
     {value : "lc", text : "Lyran Commonwealth"},
-    {value : "wd", text : "Wolf's Dragoons"}
-]
+    {value : "wd", text : "Wolf's Dragoons"},
+];
+
 
 const mapState = state => ({
   unitInfo : selectUnitInfo(state)
-})
+});
+
+const actions = {
+  updateUnitInfo,
+}
+
 
 class UnitInfo extends Component {
+
+  onAffiliationChanged = (e, result) => {
+    const {name, value} = result;
+    console.log(name)
+
+    const newValues = { [name] : value};
+    this.props.updateUnitInfo(newValues);
+  }
 
   render() {
     const {unitInfo} = this.props;
@@ -34,9 +54,11 @@ class UnitInfo extends Component {
                 <Form.Field name="Affiliation" width={6} >
                     <label>Affiliation</label>
                     <Dropdown 
+                        name="affiliation"
                         selection 
                         options={FACTIONS}
-                        value={affiliation} />
+                        value={affiliation}
+                        onChange={this.onAffiliationChanged} />
                 </Form.Field>
             </Form>
         </Segment>
@@ -44,4 +66,4 @@ class UnitInfo extends Component {
   }
 }
 
-export default connect(mapState)(UnitInfo);
+export default connect(mapState, actions)(UnitInfo);
