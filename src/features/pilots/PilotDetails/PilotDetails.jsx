@@ -27,6 +27,18 @@ const RANKS = [
   {value: "Colonel", text : "Colonel"},
 ];
 
+const SKILL_VALUES = [
+  {value : 0, text : 0},
+  {value : 1, text : 1},
+  {value : 2, text : 2},
+  {value : 3, text : 3},
+  {value : 4, text : 4},
+  {value : 5, text : 5},
+  {value : 6, text : 6},
+  {value : 7, text : 7},
+  {value : 8, text : 8},
+]
+
 const MECHS = [
   {value: 'WHM-6R', text : 'Warhammer WHM-6R'}
 ];
@@ -76,56 +88,68 @@ export class PilotDetails extends Component {
   
     return (
       <Form size="large">
-        <Form.Field name="name" width={16}>
-          <label>Name</label>
-          <input
-            placeholder="name"
-            value={name}
-            disabled={!canStopEditing}
+        <Form.Field
+            name="name"
+            label="Name"
+            width={16}
+            control="input"
+              placeholder="Name"
+              value={name}
+              disabled={!canStopEditing}
             />
-        </Form.Field>
-        <Form.Field name="rank" width={16}>
-          <label>Rank</label>
-          <Dropdown
-            fluid
-            selection
-            options={RANKS}
-            value={rank}
-            disabled={!canStopEditing}
+        <Form.Field
+            name="rank"
+            label="Rank"
+            width={16}
+            control={Dropdown}
+              fluid
+              selection
+              options={RANKS}
+              value={rank}
+              disabled={!canStopEditing}
             />
-        </Form.Field>
-        <Form.Field name="age" width={6}>
-          <label>Age</label>
-          <input
-            placeholder="Age"
-            value={age}
-            disabled={!canStopEditing}
+        <Form.Field
+            name="age"
+            label="Age"
+            width={6}
+            control="input"
+              placeholder="Age"
+              value={age}
+              disabled={!canStopEditing}
             />
-        </Form.Field>
-        <Form.Field name="gunnery" width={6}>
-          <label>Gunnery</label>
-          <input
-            value={gunnery}
-            disabled={!canStopEditing}
+        <Form.Field
+            name="gunnery"
+            label="Gunnery"
+            width={6}
+            control={Dropdown}
+              fluid
+              selection
+              options={SKILL_VALUES}
+              value={gunnery}
+              disabled={!canStopEditing}
             />
-        </Form.Field>
-        <Form.Field name="piloting" width={6}>
-          <label>Piloting</label>
-          <input
-            value={piloting}
-            disabled={!canStopEditing}
+        <Form.Field
+            name="piloting"
+            label="Piloting"
+            width={6}
+            control={Dropdown}
+              fluid
+              selection
+              options={SKILL_VALUES}
+              value={piloting}
+              disabled={!canStopEditing}
             />
-        </Form.Field>
-        <Form.Field name="mech" width={16}>
-          <label>Mech</label>
-          <Dropdown
-            fluid
-            selection
-            options={MECHS}
-            value={mechType}
-            disabled={!canStopEditing}
+        <Form.Field
+            name="mech"
+            label="Mech"
+            width={16}
+            control={Dropdown}
+              fluid
+              selection
+              options={MECHS}
+              value={mechType}
+              disabled={!canStopEditing}
             />
-        </Form.Field>
         <Grid.Row width={16}>
           <Button
             primary
