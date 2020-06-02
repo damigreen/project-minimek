@@ -8,6 +8,8 @@ import entitiesReducer from './entitiesReducer';
 import pilotsReducer from '../../features/pilots/pilotsReducer';
 import mechsReducer from '../../features/mechs/mechsReducer';
 
+import entityCrudReducer from '../../features/entities/entityReducer';
+
 const combinedReducer = combineReducers({
   entities : entitiesReducer,
   pilots: pilotsReducer,
@@ -18,7 +20,8 @@ const combinedReducer = combineReducers({
 
 
 const rootReducer = reduceReducers(
- combinedReducer
+ combinedReducer,
+ entityCrudReducer
 )
 
 export default rootReducer;
