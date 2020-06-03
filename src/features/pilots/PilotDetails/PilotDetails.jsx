@@ -17,6 +17,10 @@ import {
   stopEditingPilot,
 } from '../pilotsActions';
 
+import { updateEntity } from '../../entities/entityActions';
+
+import { getValueFromEvent } from '../../../common/utils/clientUtils';
+
 const RANKS = [
   {value: "Private", text : "Private"},
   {value: "Corporal", text : "Corporal"},
@@ -65,12 +69,24 @@ const mapState = state => {
 const actions = {
   startEditingPilot,
   stopEditingPilot,
+  updateEntity,
 }
 
 
 export class PilotDetails extends Component {
+  constructor(props) {
+    super(props)
+    this.onNameChanged = this.onNameChanged.bind(this)
+  }
 
-  render() {
+  onNameChanged (e) {
+    const newValues = getValueFromEvent(e);
+    const {id} = this.props.pilot;
+
+    this.props.updateEntity('Pilot', id, newValues);
+  }
+  
+  render() {  
     const { pilot={}, pilotIsSelected=false, isEditingPilot=false, ...actions } = this.props
 
     const {
@@ -96,6 +112,7 @@ export class PilotDetails extends Component {
               placeholder="Name"
               value={name}
               disabled={!canStopEditing}
+              onChange={this.onNameChanged}
             />
         <Form.Field
             name="rank"

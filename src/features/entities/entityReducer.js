@@ -4,7 +4,8 @@ import { createConditionalSliceReducer } from '../../common/utils/reducerUtils';
 
 import orm from '../../app/orm/';
 
-export function updateEntity(state, payload) {
+
+export function updateEntity(state, payload) {  
   const { itemType, itemID, newItemAttributes } = payload;
 
   const session = orm.session(state);
