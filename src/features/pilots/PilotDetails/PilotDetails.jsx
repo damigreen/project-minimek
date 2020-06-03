@@ -77,6 +77,7 @@ export class PilotDetails extends Component {
   constructor(props) {
     super(props)
     this.onNameChanged = this.onNameChanged.bind(this)
+    this.onRankChanged = this.onRankChanged.bind(this)
   }
 
   onNameChanged (e) {
@@ -84,6 +85,14 @@ export class PilotDetails extends Component {
     const {id} = this.props.pilot;
 
     this.props.updateEntity('Pilot', id, newValues);
+  }
+
+  onRankChanged (e, result) {
+    const newValues = {rank : result.value};
+
+    const {id} = this.props.pilot;
+
+    this.props.updateEntity('Pilot', id, newValues)
   }
   
   render() {  
@@ -124,6 +133,7 @@ export class PilotDetails extends Component {
               options={RANKS}
               value={rank}
               disabled={!canStopEditing}
+              onChange={this.onRankChanged}
             />
         <Form.Field
             name="age"
