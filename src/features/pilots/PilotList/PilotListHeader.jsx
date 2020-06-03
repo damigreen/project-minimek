@@ -19,6 +19,7 @@ const PilotListHeader = () => (
             <Table.HeaderCell width={4}>
                 Mech
             </Table.HeaderCell>
+            <Table.HeaderCell width={1} />
 
         </Table.Row>
     </Table.Header>

@@ -1,9 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Table } from 'semantic-ui-react';
+import {
+  Table,
+  Button,
+  Icon,
+} from 'semantic-ui-react';
 import _ from 'lodash';
 
 import { getEntitiesSession } from '../../entities/entitySelectors';
+import { deleteEntity } from '../../entities/entityActions';
 
 
 const mapState = (state, ownProps) => {
@@ -35,7 +40,12 @@ const mapState = (state, ownProps) => {
   return {pilot};
 }
 
-const PilotListRow = ({ pilot={}, onPilotClicked=_.noop, selected }) => {
+const actions = {
+  deleteEntity,
+}
+
+
+const PilotListRow = ({ pilot={}, onPilotClicked=_.noop, selected, deleteEntity }) => {
 
   const {
       id = null,
@@ -47,26 +57,48 @@ const PilotListRow = ({ pilot={}, onPilotClicked=_.noop, selected }) => {
       mechType = "",
   } = pilot;
 
-    return (
-      <Table.Row onClick={() => onPilotClicked(id)} active={selected}>
-        <Table.Cell>
-          {name}
-        </Table.Cell>
-        <Table.Cell>
-          {rank}
-        </Table.Cell>
-        <Table.Cell>
-          {age}
-        </Table.Cell>
-        <Table.Cell>
-          {gunnery} / {piloting}
-        </Table.Cell>
-        <Table.Cell>
-          {mechType}
-        </Table.Cell>
+  const onDeleteClicked = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    deleteEntity('Pilot', id);
+  }
 
-      </Table.Row>
+  const onRowClicked = () => onPilotClicked(id)
+
+  return (
+    <Table.Row onClick={onRowClicked} active={selected}>
+      <Table.Cell>
+        {name}
+      </Table.Cell>
+      <Table.Cell>
+        {rank}
+      </Table.Cell>
+      <Table.Cell>
+        {age}
+      </Table.Cell>
+      <Table.Cell>
+        {gunnery} / {piloting}
+      </Table.Cell>
+      <Table.Cell>
+        {mechType}
+      </Table.Cell>
+      <Table.Cell>
+      <Button
+        compact
+        basic
+        circular
+        size="tiny"
+        color="red"
+        icon={<Icon name="delete" />}
+        onClick={onDeleteClicked}
+      >
+
+      </Button>
+
+      </Table.Cell>
+
+    </Table.Row>
   )
 }
 
-export default connect(mapState)(PilotListRow);
+export default connect(mapState, actions)(PilotListRow);
