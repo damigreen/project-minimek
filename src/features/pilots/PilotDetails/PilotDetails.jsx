@@ -8,7 +8,7 @@ import {
   Button,
 } from 'semantic-ui-react';
 
-import orm from '../../../app/orm/';
+import {  getEntitiesSession } from '../../entities/entitySelectors';
 
 import { selectCurrentPilot, selectIsEditingPilot } from '../pilotsSelector';
 
@@ -47,10 +47,11 @@ const MECHS = [
   {value: 'WHM-6R', text : 'Warhammer WHM-6R'}
 ];
 
+
 const mapState = state => {
   let pilot;
 
-  const session = orm.session(state.entities);
+  const session = getEntitiesSession(state);
 
   const {Pilot} = session;
 

@@ -4,10 +4,11 @@ import { Table } from 'semantic-ui-react';
 
 import { getWeightClass } from '../mechSelectors';
 
-import orm from '../../../app/orm';
+import { getEntitiesSession } from '../../entities/entitySelectors';
+
 
 const mapState = (state, ownProps) => {
-  const session = orm.session(state.entities);
+  const session = getEntitiesSession(state);
   const {Mech} = session;
 
   let mech;

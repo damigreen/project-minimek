@@ -8,12 +8,13 @@ import PilotListRow from './PilotListRow'
 import { selectCurrentPilot } from '../pilotsSelector';
 import { selectPilot } from '../pilotsActions'
 
-import orm from '../../../app/orm';
+import { getEntitiesSession } from '../../entities/entitySelectors';
+
 
 const mapState = (state) => {
   // Create a Redux-ORM Session from the entities slice, which
   // contains the 'table' for each model class.
-  const session = orm.session(state.entities);
+  const session = getEntitiesSession(state)
 
 
   // Retreive the model class that is needed. Each Session

@@ -5,13 +5,13 @@ import { Table } from 'semantic-ui-react';
 import MechsListHeader from './MechsListHeader'
 import MechsListRow from './MechsListRow';
 
-import orm from '../../../app/orm/';
-
 import { selectCurrentMech } from '../mechSelectors';
 import { selectMech } from '../mechsActions'
+import { getEntitiesSession } from '../../entities/entitySelectors';
+
 
 const mapState = (state) => {
-  const session = orm.session(state.entities);
+  const session = getEntitiesSession(state);
 
   const {Mech} = session;
 

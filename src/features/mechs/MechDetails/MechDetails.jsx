@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import { getWeightClass, selectCurrentMech } from '../mechSelectors';
 
-import orm from '../../../app/orm';
+import { getEntitiesSession } from '../../entities/entitySelectors';
 
 
 const mapState = (state) => {
@@ -12,7 +12,7 @@ const mapState = (state) => {
 
   const currentMech = selectCurrentMech(state);
 
-  const session = orm.session(state.entities);
+  const session = getEntitiesSession(state);
 
   const {Mech} = session;
 
