@@ -28,7 +28,7 @@ export function updateEntity(state, payload) {
   return newState;
 }
 
-export function deleteEntity(state, payload) {
+export function deleteEntity(state, payload) {  
   const { itemType, itemID } = payload;
 
   const session = orm.session(state);

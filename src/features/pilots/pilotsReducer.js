@@ -5,6 +5,7 @@ import {
   PILOT_EDIT_START,
   PILOT_EDIT_STOP
 } from './pilotsConstant';
+import { ENTITY_DELETE } from '../entities/entityConstants';
 
 const initialState = {
   currentPilot : null,
@@ -29,22 +30,34 @@ export const selectPilot = (state, payload) => {
   }
 }
 
-export const startEditingPilot = (state, payload) => {
+export function startEditingPilot(state, payload) {
   return {
     ...state,
     isEditing: true,
   };
 }
 
-export const stopEditingPilot = (state, payload) => {
+export function stopEditingPilot(state, payload) {
   return {
     ...state,
     isEditing: false,
   };
 }
 
+export function stopEditingIfDeleted(state, payload) {
+  const { isEditing, currentPilot } = state;
+  const { itemType, itemID } = payload;
+
+  if(isEditing && itemType === 'Pilot' && itemID === currentPilot) {
+    return stopEditingPilot(state, payload);
+  }
+
+  return state;
+}
+
 export default createReducer(initialState, {
   [PILOT_SELECT] : selectPilot,
   [PILOT_EDIT_START] : startEditingPilot,
   [PILOT_EDIT_STOP] : stopEditingPilot,
+  [ENTITY_DELETE] : stopEditingIfDeleted,
 })
