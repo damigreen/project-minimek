@@ -9,9 +9,11 @@ import pilotsReducer from '../../features/pilots/pilotsReducer';
 import mechsReducer from '../../features/mechs/mechsReducer';
 
 import entityCrudReducer from '../../features/entities/entityReducer';
+import editingEntitiesReducer from '../reducers/editingEntitiesReducer';
 
 const combinedReducer = combineReducers({
   entities : entitiesReducer,
+  editingEntities: editingEntitiesReducer,
   pilots: pilotsReducer,
   mechs: mechsReducer,
   unitInfo : unitInfoReducer,
