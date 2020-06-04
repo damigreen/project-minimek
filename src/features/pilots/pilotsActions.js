@@ -1,3 +1,8 @@
+import {
+  editExistingItem,
+  stopEditingItem
+} from '../../features/editing/editingActions'
+
 import { PILOT_SELECT,
   PILOT_EDIT_START,
   PILOT_EDIT_STOP
@@ -11,14 +16,20 @@ export function selectPilot(pilotId) {
   };
 }
 
-export function startEditingPilot() {
-  return {
-    type: PILOT_EDIT_START,
+export function startEditingPilot(pilotID) {
+  return (dispatch, getState) => {
+    dispatch(editExistingItem('Pilot', pilotID))
+    dispatch({
+      type: PILOT_EDIT_START
+    });
   }
 }
 
-export function stopEditingPilot() {
-  return {
-    type: PILOT_EDIT_STOP,
+export function stopEditingPilot(pilotID) {
+  return (dispatch, getState) => {
+    dispatch({
+      type: PILOT_EDIT_STOP
+    });
+    dispatch(stopEditingItem('Pilot', pilotID));
   }
 }

@@ -15,8 +15,8 @@ export function updateEntitiesState(state, updatedEntities) {
   };
 }
 
-export function readEntityData(state, itemType, itemID) {
-  const readSession = orm.session(state);
+export function readEntityData(entities, itemType, itemID) {
+  const readSession = orm.session(entities);
 
   // Look up the model instance for the requested item
   const model = getModelByType(readSession, itemType, itemID);

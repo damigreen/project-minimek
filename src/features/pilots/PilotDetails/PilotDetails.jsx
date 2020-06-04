@@ -8,7 +8,8 @@ import {
   Button,
 } from 'semantic-ui-react';
 
-import {  getEntitiesSession } from '../../entities/entitySelectors';
+import { getEntitiesSession } from '../../entities/entitySelectors';
+import { getEditingEntitiesSession } from '../../editing/editingSelectors';
 
 import { selectCurrentPilot, selectIsEditingPilot } from '../pilotsSelector';
 
@@ -17,7 +18,10 @@ import {
   stopEditingPilot,
 } from '../pilotsActions';
 
-import { updateEntity } from '../../entities/entityActions';
+import {
+  editItemAttributes,
+} from '../../../features/editing/editingActions'
+
 
 import { getValueFromEvent } from '../../../common/utils/clientUtils';
 
@@ -51,18 +55,22 @@ const MECHS = [
 const mapState = state => {
   let pilot;
 
-  const session = getEntitiesSession(state);
-
-  const {Pilot} = session;
-
   const currentPilot = selectCurrentPilot(state);
   
-  if (Pilot.idExists(currentPilot)) {
-    pilot = Pilot.withId(currentPilot);
-  }
-
   const pilotIsSelected = Boolean(currentPilot);
   const isEditingPilot = selectIsEditingPilot(state);
+
+  if(pilotIsSelected) {
+    const session = isEditingPilot ? 
+      getEditingEntitiesSession(state) :
+      getEntitiesSession(state);
+
+    const {Pilot} = session;
+
+    if(Pilot.idExists(currentPilot)) {
+      pilot = Pilot.withId(currentPilot).ref;
+    }
+  }
 
   return {pilot, pilotIsSelected, isEditingPilot}
 }
@@ -70,7 +78,7 @@ const mapState = state => {
 const actions = {
   startEditingPilot,
   stopEditingPilot,
-  updateEntity,
+  editItemAttributes
 }
 
 
@@ -79,25 +87,37 @@ export class PilotDetails extends Component {
     super(props)
     this.onInputChanged = this.onInputChanged.bind(this);
     this.onDropdownChanged = this.onDropdownChanged.bind(this);
+    this.onStartEditingClicked = this.onStartEditingClicked.bind(this);
+    this.onStopEditingClicked = this.onStopEditingClicked.bind(this);
+  }
+
+  onStartEditingClicked () {
+    const {id} = this.props.pilot;
+    this.props.startEditingPilot(id)
+  }
+
+  onStopEditingClicked () {
+    const {id} = this.props.pilot;
+    this.props.stopEditingPilot(id)
   }
 
   onInputChanged (e) {
     const newValues = getValueFromEvent(e);
     const {id} = this.props.pilot;
 
-    this.props.updateEntity('Pilot', id, newValues);
+    this.props.editItemAttributes('Pilot', id, newValues);
   }
-
+  
   onDropdownChanged (e, result) {
     const {name, value} = result;
     const newValues = {[name] : value};
     const {id} = this.props.pilot;
-
-    this.props.updateEntity('Pilot', id, newValues)
+    
+    this.props.editItemAttributes('Pilot', id, newValues);
   }
   
   render() {  
-    const { pilot={}, pilotIsSelected=false, isEditingPilot=false, ...actions } = this.props
+    const { pilot={}, pilotIsSelected=false, isEditingPilot=false } = this.props
 
     const {
       name = "",
@@ -187,7 +207,7 @@ export class PilotDetails extends Component {
             primary
             disabled={!canStartEditing}
             type="button"
-            onClick={actions.startEditingPilot} 
+            onClick={this.onStartEditingClicked} 
             >
               Start Editing
           </Button>
@@ -195,7 +215,7 @@ export class PilotDetails extends Component {
             primary
             disabled={!canStopEditing}
             type="button"
-            onClick={actions.stopEditingPilot} 
+            onClick={this.onStopEditingClicked}
             >
               Stop Editing
           </Button>

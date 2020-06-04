@@ -24,7 +24,12 @@ import {
 export function copyEntity(sourceEntities, destinationEntities, payload){
   const { itemID, itemType } = payload;
 
+  // get the json object of the requested data
   const newItemAttributes = readEntityData(sourceEntities, itemType, itemID);
+  if(newItemAttributes.name) {
+    newItemAttributes.name += '(copied)';
+  }
+
   const creationPayload = { itemType, itemID, newItemAttributes };
 
   const updatedEntities = createEntity(destinationEntities, creationPayload);
@@ -32,9 +37,9 @@ export function copyEntity(sourceEntities, destinationEntities, payload){
 }
 
 
-
 export function editItemExisting(state, payload) {
   const entities = selectEntities(state);
+
   const editingEntities = selectEditingEntities(state);
 
   const updateEditingEntities = copyEntity(entities, editingEntities, payload);
