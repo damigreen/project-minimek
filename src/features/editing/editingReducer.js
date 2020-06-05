@@ -3,21 +3,20 @@ import {
   updateEntity,
   deleteEntity,
 } from '../entities/entityReducer';
-
 import {
   EDIT_ITEM_EXISTING,
   EDIT_ITEM_UPDATE,
   EDIT_ITEM_STOP,
+  EDIT_ITEM_APPLY,
 } from './editingConstants';
-
 import { createReducer } from '../../common/utils/reducerUtils';
-
 import { selectEntities } from '../entities/entitySelectors';
 import { selectEditingEntities } from './editingSelectors';
-import {
-  readEntityData,
-  updateEditingEntitiesState,
-} from './editingUtils';
+import { readEntityData, updateEditingEntitiesState, updateEntitiesState } from './editingUtils';
+import orm from '../../app/orm/'
+import { getModelByType } from '../../common/utils/modelUtils';
+// Return data for the updated fields in the Redux-ORM session 
+import { updatedEntites } from './editingUtils';
 
 
 // Duplicate Model instance for the 'draft data'
@@ -33,8 +32,40 @@ export function copyEntity(sourceEntities, destinationEntities, payload){
   return updatedEntities;
 }
 
+export function updateEditedEntity(sourceEntities, destinationEntities, payload) {
+  // Reading the 'work in progress' data
+  const readSession = orm.session(sourceEntities);
+
+  const { itemType, itemID } = payload;
+
+  // Look up the model instance for the requested item
+  const model = getModelByType(readSession);
+
+  let writeSession = orm.session(destinationEntities);
+
+  const ModelClass = writeSession[itemType];
+
+  if(ModelClass.idExists(itemID)) {
+    // Look up the original model instance from the top item
+    const existingItem = ModelClass.withId(itemID);
+
+    if (existingItem.updateFrom) {
+      // Each model class should know how to properly update itself and its
+      // relations from another model of the same type.  Ask the original model to
+      // update itself based on the "work-in-progress" model, which queues up a
+      // series of immutable add/update/delete actions internally
+      existingItem.updateFrom(model);
+    }
+  }
+
+  // Imutably apply the changes to generate our new 'current' relational data
+  const updatedEntities = writeSession.state;
+  return updatedEntities;
+}
 
 export function editItemExisting(state, payload) {
+  console.log(state);
+
   const entities = selectEntities(state);
 
   const editingEntities = selectEditingEntities(state);
@@ -58,12 +89,23 @@ export function editItemStop(state, payload) {
   return updateEditingEntitiesState(state, updatedEditingEntities);
 }
 
+export function editItemApply(state, payload) {
+  const entities = selectEntities(state);
+  const editingEntities = selectEditingEntities(state);
+
+  const updatedEntites = updateEditedEntity(editingEntities, entities, payload);
+
+  return updateEntitiesState(state, updatedEntites);
+}
+
+
 
 
 const editingFeatureReducer = createReducer({}, {
   [EDIT_ITEM_STOP] : editItemStop,
   [EDIT_ITEM_EXISTING] : editItemExisting,
   [EDIT_ITEM_UPDATE] : editItemUpdate,
+  [EDIT_ITEM_APPLY] : editItemApply,
 });
 
 export default editingFeatureReducer;
