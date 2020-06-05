@@ -26,9 +26,6 @@ export function copyEntity(sourceEntities, destinationEntities, payload){
 
   // get the json object of the requested data
   const newItemAttributes = readEntityData(sourceEntities, itemType, itemID);
-  if(newItemAttributes.name) {
-    newItemAttributes.name += '(copied)';
-  }
 
   const creationPayload = { itemType, itemID, newItemAttributes };
 

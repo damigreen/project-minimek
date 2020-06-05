@@ -8,5 +8,9 @@ export default class MechDesign extends Model {
   toJSON() {
     return {...this.ref}
   }
+
+  updateform(otherDesign) {
+    this.update(otherDesign)
+  }
 }
 MechDesign.modelName = 'MechDesign';
