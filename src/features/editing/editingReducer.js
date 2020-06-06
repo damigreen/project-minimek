@@ -32,6 +32,7 @@ export function copyEntity(sourceEntities, destinationEntities, payload){
   return updatedEntities;
 }
 
+
 export function updateEditedEntity(sourceEntities, destinationEntities, payload) {
   // Reading the 'work in progress' data
   const readSession = orm.session(sourceEntities);
@@ -63,15 +64,18 @@ export function updateEditedEntity(sourceEntities, destinationEntities, payload)
   return updatedEntities;
 }
 
+
+
 export function editItemExisting(state, payload) {
   const entities = selectEntities(state);
 
   const editingEntities = selectEditingEntities(state);
-
+  
   const updateEditingEntities = copyEntity(entities, editingEntities, payload);
 
   return updateEditingEntitiesState(state, updateEditingEntities);
 }
+
 
 export function editItemUpdate(state, payload) {
   const editingEntities = selectEditingEntities(state);
@@ -80,12 +84,14 @@ export function editItemUpdate(state, payload) {
   return updateEditingEntitiesState(state, updatedEditingEntities);
 }
 
+
 export function editItemStop(state, payload) {
   const editingEntities = selectEditingEntities(state);
   
   const updatedEditingEntities =  deleteEntity(editingEntities, payload);
   return updateEditingEntitiesState(state, updatedEditingEntities);
 }
+
 
 export function editItemApply(state, payload) {
   const editingEntities = selectEditingEntities(state);
@@ -96,10 +102,10 @@ export function editItemApply(state, payload) {
   return updateEntitiesState(state, updatedEntities);
 }
 
+
 export function editItemReset(state, payload) {
   const stateWithoutItem = editItemStop(state, payload);
   const stateWithCurrentItem = editItemExisting(stateWithoutItem, payload);
-  console.log(stateWithCurrentItem);
 
   return stateWithCurrentItem;
 }

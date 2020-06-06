@@ -15,8 +15,13 @@ import { selectCurrentPilot, selectIsEditingPilot } from '../pilotsSelector';
 
 import { 
   startEditingPilot,
+  cancelEditingPilot,
   stopEditingPilot,
 } from '../pilotsActions';
+
+import {
+  resetEditedItem,
+} from '../../../features/editing/editingActions'
 
 import {
   editItemAttributes,
@@ -78,7 +83,9 @@ const mapState = state => {
 const actions = {
   startEditingPilot,
   stopEditingPilot,
-  editItemAttributes
+  editItemAttributes,
+  cancelEditingPilot,
+  resetEditedItem,
 }
 
 
@@ -89,6 +96,7 @@ export class PilotDetails extends Component {
     this.onDropdownChanged = this.onDropdownChanged.bind(this);
     this.onStartEditingClicked = this.onStartEditingClicked.bind(this);
     this.onStopEditingClicked = this.onStopEditingClicked.bind(this);
+    this.onResetClicked = this.onResetClicked.bind(this);
   }
 
   onStartEditingClicked () {
@@ -115,6 +123,11 @@ export class PilotDetails extends Component {
     
     this.props.editItemAttributes('Pilot', id, newValues);
   }
+
+  onResetClicked () {
+    const {id} = this.props.pilot;
+    this.props.resetEditedItem('Pilot', id)
+  }
   
   render() {  
     const { pilot={}, pilotIsSelected=false, isEditingPilot=false } = this.props
@@ -130,6 +143,8 @@ export class PilotDetails extends Component {
   
     const canStartEditing = pilotIsSelected && !isEditingPilot;
     const canStopEditing = pilotIsSelected && isEditingPilot;
+
+    const buttonWidth = 140;
   
   
     return (
@@ -207,19 +222,43 @@ export class PilotDetails extends Component {
             primary
             disabled={!canStartEditing}
             type="button"
+            style={{width : buttonWidth}}
             onClick={this.onStartEditingClicked} 
             >
               Start Editing
           </Button>
           <Button
+            secondary
+            disabled={!canStopEditing}
+            type="button"
+            style={{width : buttonWidth}}
+            onClick={this.onStopEditingClicked}
+            >
+              Save Editing
+          </Button>
+  
+        </Grid.Row>
+        <Grid.Row>
+          <Button
+            disabled={!canStopEditing}
+            type="button"
+            style={{width : buttonWidth, marginRight : 10}}
+            onClick={this.onResetClicked} 
+            >
+              Reset Values
+          </Button>
+          <Button
+            negative
             primary
             disabled={!canStopEditing}
             type="button"
-            onClick={this.onStopEditingClicked}
+            style={{width :buttonWidth}}
+            onClick={this.props.cancelEditingPilot} 
             >
-              Stop Editing
+              Cancel Edits
           </Button>
-  
+
+
         </Grid.Row>
       </Form>       
     )

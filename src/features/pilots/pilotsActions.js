@@ -12,7 +12,7 @@ import {
 
 import { selectCurrentPilot, selectIsEditingPilot } from './pilotsSelector';
 
-export function selectPilot(pilotId) {
+export function selectPilot(pilotID) {
   return (dispatch, getState) => {
     const state = getState();
     
@@ -24,12 +24,12 @@ export function selectPilot(pilotId) {
 
     dispatch({
       type : PILOT_SELECT,
-      payload : {currentPilot: pilotId}
+      payload : {currentPilot: pilotID}
     })
   }
 }
 
-export function startEditingPilot(pilotID) {
+export function startEditingPilot() {
   return (dispatch, getState) => {
     const currentPilot = selectCurrentPilot(getState());
 
@@ -48,6 +48,17 @@ export function stopEditingPilot() {
       type: PILOT_EDIT_STOP
     });
     dispatch(applyItemEdits('Pilot', currentPilot));
+    dispatch(stopEditingItem('Pilot', currentPilot));
+  }
+}
+
+export function cancelEditingPilot() {
+  return (dispatch, getState) => {
+    const currentPilot = selectCurrentPilot(getState());
+
+    dispatch({
+      type : PILOT_EDIT_STOP
+    })
     dispatch(stopEditingItem('Pilot', currentPilot));
   }
 }
