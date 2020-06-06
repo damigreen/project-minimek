@@ -1,6 +1,7 @@
 import {
   editExistingItem,
   stopEditingItem,
+  applyItemEdits
 } from '../../features/editing/editingActions'
 
 import {
@@ -46,6 +47,7 @@ export function stopEditingPilot() {
     dispatch({
       type: PILOT_EDIT_STOP
     });
+    dispatch(applyItemEdits('Pilot', currentPilot));
     dispatch(stopEditingItem('Pilot', currentPilot));
   }
 }
