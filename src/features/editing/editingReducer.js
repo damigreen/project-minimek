@@ -12,11 +12,10 @@ import {
 import { createReducer } from '../../common/utils/reducerUtils';
 import { selectEntities } from '../entities/entitySelectors';
 import { selectEditingEntities } from './editingSelectors';
+// Return data for the editingEntities fields in the Redux-ORM session 
 import { readEntityData, updateEditingEntitiesState, updateEntitiesState } from './editingUtils';
 import orm from '../../app/orm/'
 import { getModelByType } from '../../common/utils/modelUtils';
-// Return data for the updated fields in the Redux-ORM session 
-import { updatedEntites } from './editingUtils';
 
 
 // Duplicate Model instance for the 'draft data'
@@ -35,11 +34,11 @@ export function copyEntity(sourceEntities, destinationEntities, payload){
 export function updateEditedEntity(sourceEntities, destinationEntities, payload) {
   // Reading the 'work in progress' data
   const readSession = orm.session(sourceEntities);
-
+  
   const { itemType, itemID } = payload;
 
   // Look up the model instance for the requested item
-  const model = getModelByType(readSession);
+  const model = getModelByType(readSession, itemType, itemID);
 
   let writeSession = orm.session(destinationEntities);
 
@@ -64,8 +63,6 @@ export function updateEditedEntity(sourceEntities, destinationEntities, payload)
 }
 
 export function editItemExisting(state, payload) {
-  console.log(state);
-
   const entities = selectEntities(state);
 
   const editingEntities = selectEditingEntities(state);
@@ -84,18 +81,18 @@ export function editItemUpdate(state, payload) {
 
 export function editItemStop(state, payload) {
   const editingEntities = selectEditingEntities(state);
-
+  
   const updatedEditingEntities =  deleteEntity(editingEntities, payload);
   return updateEditingEntitiesState(state, updatedEditingEntities);
 }
 
 export function editItemApply(state, payload) {
-  const entities = selectEntities(state);
   const editingEntities = selectEditingEntities(state);
+  const entities = selectEntities(state);
 
-  const updatedEntites = updateEditedEntity(editingEntities, entities, payload);
+  const updatedEntities = updateEditedEntity(editingEntities, entities, payload);
 
-  return updateEntitiesState(state, updatedEntites);
+  return updateEntitiesState(state, updatedEntities);
 }
 
 

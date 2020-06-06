@@ -38,7 +38,7 @@ export function deleteEntity(state, payload) {
 
   if(ModelClass.idExists(itemID)) {
     const modelInstance = ModelClass.withId(itemID);
-
+    
     modelInstance.delete();
 
     // Imutably apply the updates and return the new entities structure

@@ -1,35 +1,51 @@
 import {
   editExistingItem,
-  stopEditingItem
+  stopEditingItem,
 } from '../../features/editing/editingActions'
 
-import { PILOT_SELECT,
+import {
+  PILOT_SELECT,
   PILOT_EDIT_START,
   PILOT_EDIT_STOP
 } from './pilotsConstant';
 
+import { selectCurrentPilot, selectIsEditingPilot } from './pilotsSelector';
 
 export function selectPilot(pilotId) {
-  return {
-    type : PILOT_SELECT,
-    payload: { currentPilot: pilotId }
-  };
+  return (dispatch, getState) => {
+    const state = getState();
+    
+    const isEditing = selectIsEditingPilot(state);
+
+    if(isEditing) {
+      dispatch(stopEditingPilot())
+    }
+
+    dispatch({
+      type : PILOT_SELECT,
+      payload : {currentPilot: pilotId}
+    })
+  }
 }
 
 export function startEditingPilot(pilotID) {
   return (dispatch, getState) => {
-    dispatch(editExistingItem('Pilot', pilotID))
+    const currentPilot = selectCurrentPilot(getState());
+
+    dispatch(editExistingItem('Pilot', currentPilot))
     dispatch({
       type: PILOT_EDIT_START
     });
   }
 }
 
-export function stopEditingPilot(pilotID) {
+export function stopEditingPilot() {
   return (dispatch, getState) => {
+    const currentPilot = selectCurrentPilot(getState());
+
     dispatch({
       type: PILOT_EDIT_STOP
     });
-    dispatch(stopEditingItem('Pilot', pilotID));
+    dispatch(stopEditingItem('Pilot', currentPilot));
   }
 }
