@@ -1,17 +1,18 @@
-import { Model, fk } from 'redux-orm';
+import { Model, attr, fk } from 'redux-orm';
 
 export default class Mech extends Model {
 
   // Redux ORM fields getter property
   static get fields() {
     return {
+      id : attr(),
       type : fk('MechDesign'),
       pilot : fk('Pilot')
     }
   }
 
   static parse(mechData) {
-    return this.create(mechData);
+    return this.upsert(mechData);
   }
 
   toJSON() {
