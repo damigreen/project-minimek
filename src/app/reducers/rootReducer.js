@@ -7,10 +7,12 @@ import unitInfoReducer from '../../features/unitInfo/unitInfoReducer';
 import entitiesReducer from './entitiesReducer';
 import pilotsReducer from '../../features/pilots/pilotsReducer';
 import mechsReducer from '../../features/mechs/mechsReducer';
+import editingEntitiesReducer from '../reducers/editingEntitiesReducer';
+import modalReducer from '../../features/modals/modalReducer';
 
 import entityCrudReducer from '../../features/entities/entityReducer';
-import editingEntitiesReducer from '../reducers/editingEntitiesReducer';
 import editingFeatureReducer from '../../features/editing/editingReducer';
+
 
 const combinedReducer = combineReducers({
   entities : entitiesReducer,
@@ -18,8 +20,9 @@ const combinedReducer = combineReducers({
   pilots: pilotsReducer,
   mechs: mechsReducer,
   unitInfo : unitInfoReducer,
-  tabs : tabReducer
-})
+  tabs : tabReducer,
+  modals : modalReducer,
+});
 
 
 const rootReducer = reduceReducers(
