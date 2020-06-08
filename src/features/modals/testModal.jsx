@@ -2,25 +2,46 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
   Modal,
+  Button
 } from 'semantic-ui-react';
 
-import { closeModal } from './modalActions';
+import { openModal, closeModal } from './modalActions';
 
-const actions = { closeModal };
+const actions = { openModal, closeModal };
 
 export class TestModal extends Component {
+  constructor(props) {
+    super(props)
+    this.onNextModalClick = this.onNextModalClick.bind(this);
+  }
+
+  onNextModalClick () {
+    const {counter} = this.props;
+
+    this.props.openModal('TestModal', {counter : counter + 1})
+  }
+
   render() {
+    const { counter, closeModal } = this.props;
 
     return (
       <Modal 
         closeIcon="close"
         open={true}
-        onClose={this.props.closeModal}
+        onClose={closeModal}
       >
-        <Modal.Header>Modal #1</Modal.Header>
+        <Modal.Header>Modal #</Modal.Header>
         <Modal.Content image>
           <Modal.Description>
-            <p>This is a modal dialog. Really neat, hun?</p>
+            <h4>
+              value from props:
+            </h4>
+            <div>
+              counter = {counter}
+            </div>
+            <div>
+              <Button onClick={this.onNextModalClick}>Add Another Modal</Button>
+            </div>
           </Modal.Description>
         </Modal.Content>
         <Modal.Actions>

@@ -14,10 +14,15 @@ class Tools extends Component {
   constructor(props) {
     super(props)
     this.onOpenModalClicked = this.onOpenModalClicked.bind(this);
+    this.onOpenTestModalClicked = this.onOpenTestModalClicked.bind(this);
   }
 
   onOpenModalClicked () {
-    this.props.openModal('TestModal', {a : 42});
+    this.props.openModal('ColorPickerDialog');
+  }
+  
+  onOpenTestModalClicked () {
+    this.props.openModal('TestModal', {counter : 1});
   }
 
   render() {
@@ -26,7 +31,8 @@ class Tools extends Component {
     return (
       <Segment attached="bottom">
         <Button onClick={loadUnitData}>Reload Unit Data</Button>
-        <Button primary onClick={this.onOpenModalClicked}>Show Test Modal</Button>
+        <Button primary onClick={this.onOpenModalClicked}>Show Color Picker</Button>
+        <Button secondary onClick={this.onOpenTestModalClicked}>Show Test Modal</Button>
       </Segment>
     )
   }
