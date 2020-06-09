@@ -39,8 +39,6 @@ export class ColorPickerDialog extends Component {
   render() {
     const {closeModal} = this.props;
     
-    console.log(this.props)
-
     return (
     <Modal
       closeIcon="close"

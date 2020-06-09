@@ -8,10 +8,12 @@ import {
 
 import { selectUnitInfo } from '../unitInfoSelector';
 import { updateUnitInfo } from '../unitInfoActions';
+import { showColorPicker } from '../../../common/components/ColorPicker/colorPickerAction';
 
 import { getValueFromEvent } from '../../../common/utils/clientUtils';
 
 import ColorPickerButton from '../../../common/components/ColorPicker/ColorPickerButton';
+
 
 
 const FACTIONS = [
@@ -31,6 +33,7 @@ const mapState = state => ({
 
 const actions = {
   updateUnitInfo,
+  showColorPicker,
 }
 
 
@@ -48,6 +51,10 @@ class UnitInfo extends Component {
     this.props.updateUnitInfo(newValues);
   }
 
+  onColorClicked = () => {
+    this.props.showColorPicker(this.props.unitInfo.color);
+  }
+
   render() {
     const {unitInfo} = this.props;
     const {name, affiliation, color} = unitInfo;
@@ -61,7 +68,8 @@ class UnitInfo extends Component {
                       name="name"
                       placeholder="Name"
                       value={name}
-                      onChange={this.onNameChanged} />
+                      onChange={this.onNameChanged}
+                      />
                 </Form.Field>
                 <Form.Field name="Affiliation" width={6} >
                     <label>Affiliation</label>
@@ -70,11 +78,15 @@ class UnitInfo extends Component {
                         selection 
                         options={FACTIONS}
                         value={affiliation}
-                        onChange={this.onAffiliationChanged} />
+                        onChange={this.onAffiliationChanged}
+                    />
                 </Form.Field>
                 <Form.Field name="color">
                   <label>Color</label>
-                  <ColorPickerButton value={color} />
+                  <ColorPickerButton
+                    value={color}
+                    onClick={this.onColorClicked}
+                  />
                 </Form.Field>
             </Form>
         </Segment>
