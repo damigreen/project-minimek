@@ -8,13 +8,19 @@ import {
 import { SketchPicker } from 'react-color';
 
 import { closeModal } from '../../../features/modals/modalActions';
+import { colorSelected } from '../../components/ColorPicker/colorPickerAction';
+
 import { noop } from '../../utils/clientUtils';
 
-const actions = {closeModal};
+const actions = {
+  closeModal,
+  colorSelected,
+};
 
 
 export class ColorPickerDialog extends Component {
   constructor(props) {
+
     super();
     this.state = {
       color : props.color
@@ -24,8 +30,7 @@ export class ColorPickerDialog extends Component {
   }
 
   onSelectClicked () {
-    this.props.colorSelected(this.state.color);
-
+    this.props.colorSelected(this.state.color, this.props.onColorPicked);
     this.props.closeModal();
   }
 
@@ -65,7 +70,6 @@ export class ColorPickerDialog extends Component {
 
 ColorPickerDialog.defaultProps = {
   color : "green",
-  colorSelected : noop,
 }
 
 export default connect(null, actions)(ColorPickerDialog);
