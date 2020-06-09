@@ -7,7 +7,7 @@ import {
 } from 'semantic-ui-react';
 
 import { selectUnitInfo } from '../unitInfoSelector';
-import { updateUnitInfo } from '../unitInfoActions';
+import { updateUnitInfo, setUnitColor } from '../unitInfoActions';
 import { showColorPicker } from '../../../common/components/ColorPicker/colorPickerAction';
 
 import { getValueFromEvent } from '../../../common/utils/clientUtils';
@@ -34,6 +34,7 @@ const mapState = state => ({
 const actions = {
   updateUnitInfo,
   showColorPicker,
+  setUnitColor
 }
 
 
@@ -51,8 +52,12 @@ class UnitInfo extends Component {
     this.props.updateUnitInfo(newValues);
   }
 
+  
+  // Handler to display the color picker dialog
   onColorClicked = () => {
-    this.props.showColorPicker(this.props.unitInfo.color);
+    const onColorPickedAction = setUnitColor();
+    
+    this.props.showColorPicker(this.props.unitInfo.color, onColorPickedAction);
   }
 
   render() {

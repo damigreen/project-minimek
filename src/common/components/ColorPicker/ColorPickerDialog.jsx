@@ -26,16 +26,15 @@ export class ColorPickerDialog extends Component {
       color : props.color
     }
     this.onSelectClicked = this.onSelectClicked.bind(this);
-    this.onselectedColorChanged = this.onselectedColorChanged.bind(this);
+    this.onSelectedColorChanged = this.onSelectedColorChanged.bind(this);
   }
 
   onSelectClicked () {
     this.props.colorSelected(this.state.color, this.props.onColorPicked);
     this.props.closeModal();
   }
-
-  onselectedColorChanged (colorEvent) {
-    console.log(colorEvent)
+ 
+  onSelectedColorChanged (colorEvent) {
 
     this.setState({color : colorEvent.hex});
   }
@@ -55,7 +54,7 @@ export class ColorPickerDialog extends Component {
       <Modal.Content>
         <SketchPicker
           color={this.state.color}
-          onChangeComplete={this.onSelectColorChanged}
+          onChangeComplete={this.onSelectedColorChanged}
         />
       </Modal.Content>
       <Modal.Actions>
@@ -69,7 +68,7 @@ export class ColorPickerDialog extends Component {
 }
 
 ColorPickerDialog.defaultProps = {
-  color : "green",
+  color : "red",
 }
 
 export default connect(null, actions)(ColorPickerDialog);

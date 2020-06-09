@@ -1,6 +1,9 @@
 import { createReducer } from '../../common/utils/reducerUtils';
 import { DATA_LOADED } from '../tools/toolConstant';
-import { UNIT_INFO_UPDATE } from './unitInfoConstants'
+import {
+  UNIT_INFO_UPDATE,
+  UNIT_INFO_SET_COLOR,
+} from './unitInfoConstants'
 
 const initialState = {
   name : "N/A",
@@ -14,14 +17,26 @@ export function dataLoaded(state, payload) {
   return unit;
 }
 
-function updateUnitInfo(state, payload) {
+export function updateUnitInfo(state, payload) {
   return {
     ...state,
     ...payload,
   }
 }
 
+// Create an action to set the unit color
+export function setUnitColor(state, payload) {
+  const {color} = payload;
+
+  return {
+    ...state,
+    color
+  }
+}
+
+
 export default createReducer(initialState, {
   [DATA_LOADED] : dataLoaded,
-  [UNIT_INFO_UPDATE] : updateUnitInfo
+  [UNIT_INFO_UPDATE] : updateUnitInfo,
+  [UNIT_INFO_SET_COLOR] : setUnitColor,
 });

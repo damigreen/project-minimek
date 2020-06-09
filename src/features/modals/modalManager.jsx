@@ -15,7 +15,6 @@ const mapState = state => ({ currentModal : state.modals});
 export class ModalManager extends Component {
   render() {
     const {currentModal} = this.props;
-    console.log(currentModal)
 
     const renderedModal = currentModal.map( (modalDescription, index) => {
       const {modalType, modalProps = {}} = modalDescription;
