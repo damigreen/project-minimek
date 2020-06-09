@@ -3,6 +3,7 @@ import React from  'react';
 import { Button } from 'semantic-ui-react';
 
 const ColorPickerButton = ({ value, onClick, disabled=false }) => {
+
   return (
     <Button
       type="button"
@@ -14,7 +15,7 @@ const ColorPickerButton = ({ value, onClick, disabled=false }) => {
         style={{
           width : 30,
           height : 15,
-          backgroundCoolor : {value}
+          backgroundColor : value,
         }}
       />
     </Button>

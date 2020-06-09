@@ -11,6 +11,9 @@ import { updateUnitInfo } from '../unitInfoActions';
 
 import { getValueFromEvent } from '../../../common/utils/clientUtils';
 
+import ColorPickerButton from '../../../common/components/ColorPickerButton';
+
+
 const FACTIONS = [
     {value : "cc", text : "Capellan Confederation"},
     {value : "dc", text : "Draconis Combine"},
@@ -47,7 +50,7 @@ class UnitInfo extends Component {
 
   render() {
     const {unitInfo} = this.props;
-    const {name, affiliation} = unitInfo;
+    const {name, affiliation, color} = unitInfo;
 
     return(
         <Segment attached="bottom">
@@ -68,6 +71,10 @@ class UnitInfo extends Component {
                         options={FACTIONS}
                         value={affiliation}
                         onChange={this.onAffiliationChanged} />
+                </Form.Field>
+                <Form.Field name="color">
+                  <label>Color</label>
+                  <ColorPickerButton value={color} />
                 </Form.Field>
             </Form>
         </Segment>

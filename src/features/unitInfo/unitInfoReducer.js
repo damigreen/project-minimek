@@ -5,6 +5,7 @@ import { UNIT_INFO_UPDATE } from './unitInfoConstants'
 const initialState = {
   name : "N/A",
   affiliation : "",
+  color : "green"
 };
 
 export function dataLoaded(state, payload) {
