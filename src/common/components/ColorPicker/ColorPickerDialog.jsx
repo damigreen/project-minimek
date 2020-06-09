@@ -7,8 +7,8 @@ import {
 
 import { SketchPicker } from 'react-color';
 
-import { closeModal } from '../../features/modals/modalActions';
-import { noop } from '../utils/clientUtils';
+import { closeModal } from '../../../features/modals/modalActions';
+import { noop } from '../../utils/clientUtils';
 
 const actions = {closeModal};
 
