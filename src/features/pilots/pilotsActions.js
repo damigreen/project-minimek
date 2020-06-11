@@ -19,7 +19,7 @@ export function selectPilot(pilotID) {
     const isEditing = selectIsEditingPilot(state);
 
     if(isEditing) {
-      dispatch(stopEditingPilot())
+      dispatch(cancelEditingPilot())
     }
 
     dispatch({
