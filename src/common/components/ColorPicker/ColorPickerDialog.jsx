@@ -10,8 +10,6 @@ import { SketchPicker } from 'react-color';
 import { closeModal } from '../../../features/modals/modalActions';
 import { colorSelected } from '../../components/ColorPicker/colorPickerAction';
 
-import { noop } from '../../utils/clientUtils';
-
 const actions = {
   closeModal,
   colorSelected,
