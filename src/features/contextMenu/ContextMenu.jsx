@@ -33,6 +33,7 @@ export class ContextMenu extends Component {
 
   render () {
     const { location } = this.props;
+    console.log(this.props)
 
     return (
       <AbsolutePosition

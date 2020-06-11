@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 
 const AbsolutePosition = (props) => {
   const { children, nodeRef } = props;
+
   const style = {
     position : 'absolute',
-    top : props.top,
-    bottom : props.buttom,
+    top : 400,
+    bottom : 100,
     left : props.left,
     right : props.right,
     width : props.width,

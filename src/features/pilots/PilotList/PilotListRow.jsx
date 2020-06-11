@@ -9,7 +9,7 @@ import _ from 'lodash';
 
 import { getEntitiesSession } from '../../entities/entitySelectors';
 import { deleteEntity } from '../../entities/entityActions';
-
+import { showContextMenu } from '../../contextMenu/contextMenuActions';
 
 const mapState = (state, ownProps) => {
   const session = getEntitiesSession(state);
@@ -41,12 +41,12 @@ const mapState = (state, ownProps) => {
 }
 
 const actions = {
+  showContextMenu,
   deleteEntity,
 }
 
 
-const PilotListRow = ({ pilot={}, onPilotClicked=_.noop, selected, deleteEntity }) => {
-
+const PilotListRow = ({ pilot={}, onPilotClicked=_.noop, selected, deleteEntity, showContextMenu }) => {
   const {
       id = null,
       name = "",
@@ -63,10 +63,18 @@ const PilotListRow = ({ pilot={}, onPilotClicked=_.noop, selected, deleteEntity 
     deleteEntity('Pilot', id);
   }
 
-  const onRowClicked = () => onPilotClicked(id)
+  const onRowClicked = () => onPilotClicked(id);
+
+  const onRowRightClicked = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    const { pageX, pageY } = e;
+    showContextMenu(pageX, pageY, 'PilotListItemMenu', {text : pilot.name, pilotId : id});
+  }
 
   return (
-    <Table.Row onClick={onRowClicked} active={selected}>
+    <Table.Row onClick={onRowClicked}  onContextMenu={onRowRightClicked} active={selected}>
       <Table.Cell>
         {name}
       </Table.Cell>

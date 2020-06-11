@@ -6,9 +6,11 @@ import ContextMenu from './ContextMenu';
 
 import { selectContextMenu } from './contextMenuSelectors';
 import { TestContextMenu } from './TestContextMenu'
+import { PilotListItemMenu } from '../pilots/PilotList/PilotListItemMenu';
 
 const menuType = {
   TestContextMenu,
+  PilotListItemMenu,
 };
 
 export function contextMenuManagerMapState(state) {
