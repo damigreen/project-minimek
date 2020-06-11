@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { connect } from 'react-reduc';
+import { connect } from 'react-redux';
 
 import AbsolutePosition from '../../common/components/AbsolutePosition';
 

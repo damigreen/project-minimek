@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import { connect } from 'react-reduc';
-import Portal from 'react-portal';
+import { connect } from 'react-redux';
+import { Portal } from 'react-portal';
 
 import ContextMenu from './ContextMenu';
 
 import { selectContextMenu } from './contextMenuSelectors';
+import { TestContextMenu } from './TestContextMenu'
 
 const menuType = {
-
+  TestContextMenu,
 };
 
 export function contextMenuManagerMapState(state) {
