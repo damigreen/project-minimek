@@ -1,8 +1,11 @@
+import cuid from 'cuid';
+
 import {
   editExistingItem,
+  editNewItem,
   stopEditingItem,
   applyItemEdits
-} from '../../features/editing/editingActions'
+} from '../../features/editing/editingActions';
 
 import {
   PILOT_SELECT,
@@ -11,6 +14,7 @@ import {
 } from './pilotsConstant';
 
 import { selectCurrentPilot, selectIsEditingPilot } from './pilotsSelector';
+import { getUnsharedEntitiesSession } from '../entities/entitySelectors';
 
 export function selectPilot(pilotID) {
   return (dispatch, getState) => {
@@ -61,4 +65,21 @@ export function cancelEditingPilot() {
     })
     dispatch(stopEditingItem('Pilot', currentPilot));
   }
+}
+
+export function addNewPilot() {
+  return (dispatch, getstate) => {
+    const session = getUnsharedEntitiesSession();
+    const {Pilot} = session;
+
+    const id = cuid();
+    
+    const newPilot = Pilot.generate({id});
+
+    const pilotContents = newPilot.toJSON();
+
+    dispatch(editNewItem('Pilot', id, pilotContents));
+    dispatch(selectPilot(id));
+    dispatch({ type : PILOT_EDIT_START });
+  } 
 }

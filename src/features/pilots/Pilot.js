@@ -1,5 +1,13 @@
 import { Model, fk, attr } from 'redux-orm';
 
+const defaultAttributes = {
+  name : 'New Pilot',
+  rank : 'Private',
+  gunnery : 4,
+  piloting : 5,
+  age : 27
+};
+
 export default class Pilot extends Model {
   static get fields() {
     return {
@@ -15,6 +23,15 @@ export default class Pilot extends Model {
 
   static parse(pilotData) {
     return this.upsert(pilotData);
+  }
+
+  static generate(newAttributes = {}) {
+    const combinedAttributes = {
+      ...defaultAttributes,
+      ...newAttributes,
+    };
+
+    return this.create(combinedAttributes);
   }
 
   toJSON() {

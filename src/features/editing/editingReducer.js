@@ -83,7 +83,7 @@ export function editItemExisting(state, payload) {
 }
 
 
-export function editItemNew(state,payload) {
+export function editItemNew(state, payload) {
   const editingEntities = selectEditingEntities(state);
 
   const updatedEditingEntities = createEntity(editingEntities, payload);
@@ -129,6 +129,7 @@ export function editItemReset(state, payload) {
 const editingFeatureReducer = createReducer({}, {
   [EDIT_ITEM_STOP] : editItemStop,
   [EDIT_ITEM_EXISTING] : editItemExisting,
+  [EDIT_ITEM_NEW] : editItemNew,
   [EDIT_ITEM_UPDATE] : editItemUpdate,
   [EDIT_ITEM_APPLY] : editItemApply,
   [EDIT_ITEM_RESET] : editItemReset,
