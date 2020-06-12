@@ -5,6 +5,7 @@ import {
 } from '../entities/entityReducer';
 import {
   EDIT_ITEM_EXISTING,
+  EDIT_ITEM_NEW,
   EDIT_ITEM_UPDATE,
   EDIT_ITEM_STOP,
   EDIT_ITEM_APPLY,
@@ -17,6 +18,7 @@ import { selectEditingEntities } from './editingSelectors';
 import { readEntityData, updateEditingEntitiesState, updateEntitiesState } from './editingUtils';
 import orm from '../../app/orm/'
 import { getModelByType } from '../../common/utils/modelUtils';
+import { create } from 'lodash';
 
 
 // Duplicate Model instance for the 'draft data'
@@ -58,6 +60,10 @@ export function updateEditedEntity(sourceEntities, destinationEntities, payload)
       existingItem.updateFrom(model);
     }
   }
+  else {
+    const itemContents = model.toJSON();
+    ModelClass.parse(itemContents);
+  }
 
   // Imutably apply the changes to generate our new 'current' relational data
   const updatedEntities = writeSession.state;
@@ -74,6 +80,14 @@ export function editItemExisting(state, payload) {
   const updateEditingEntities = copyEntity(entities, editingEntities, payload);
 
   return updateEditingEntitiesState(state, updateEditingEntities);
+}
+
+
+export function editItemNew(state,payload) {
+  const editingEntities = selectEditingEntities(state);
+
+  const updatedEditingEntities = createEntity(editingEntities, payload);
+  return updateEditingEntitiesState(state, updatedEditingEntities);
 }
 
 
