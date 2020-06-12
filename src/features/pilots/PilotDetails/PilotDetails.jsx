@@ -159,52 +159,57 @@ export class PilotDetails extends Component {
               disabled={!canStopEditing}
               onChange={this.onInputChanged}
               />
-        <Form.Field
-            name="rank"
-            label="Rank"
-            width={16}
-            control={Dropdown}
+        <Form.Group>
+          <Form.Field
+              name="rank"
+              label="Rank"
+              width={16}
+              control={Dropdown}
+                fluid
+                selection
+                options={RANKS}
+                value={rank}
+                disabled={!canStopEditing}
+                onChange={this.onDropdownChanged}
+                />
+          <Form.Field
+              name="age"
+              label="Age"
+              width={6}
+              control="input"
+              placeholder="Age"
+              value={age}
+              disabled={!canStopEditing}
+              onChange={this.onInputChanged}
+              />
+        </Form.Group>
+        <Form.Group>
+          <Form.Field
+              name="gunnery"
+              label="Gunnery"
+              width={6}
+              control={Dropdown}
               fluid
               selection
-              options={RANKS}
-              value={rank}
-              disabled={!canStopEditing}
-              onChange={this.onDropdownChanged}
-              />
-        <Form.Field
-            name="age"
-            label="Age"
-            width={6}
-            control="input"
-            placeholder="Age"
-            value={age}
-            disabled={!canStopEditing}
-            onChange={this.onInputChanged}
-            />
-        <Form.Field
-            name="gunnery"
-            label="Gunnery"
-            width={6}
-            control={Dropdown}
-            fluid
-            selection
-            options={SKILL_VALUES}
-            value={gunnery}
-            disabled={!canStopEditing}
-            onChange={this.onDropdownChanged}
-            />
-        <Form.Field
-            name="piloting"
-            label="Piloting"
-            width={6}
-            control={Dropdown}
-            fluid
-              selection
               options={SKILL_VALUES}
-              value={piloting}
+              value={gunnery}
               disabled={!canStopEditing}
               onChange={this.onDropdownChanged}
               />
+          <Form.Field
+              name="piloting"
+              label="Piloting"
+              width={6}
+              control={Dropdown}
+              fluid
+                selection
+                options={SKILL_VALUES}
+                value={piloting}
+                disabled={!canStopEditing}
+                onChange={this.onDropdownChanged}
+                />
+        </Form.Group>
+
         <Form.Field
             name="mech"
             label="Mech"
@@ -242,22 +247,21 @@ export class PilotDetails extends Component {
           <Button
             disabled={!canStopEditing}
             type="button"
-            style={{width : buttonWidth, marginRight : 10}}
+            style={{width : buttonWidth, marginRight : 5}}
             onClick={this.onResetClicked} 
             >
               Reset Values
           </Button>
           <Button
             negative
-            primary
+            secondary
             disabled={!canStopEditing}
             type="button"
-            style={{width :buttonWidth}}
+            style={{width : buttonWidth}}
             onClick={this.props.cancelEditingPilot} 
             >
               Cancel Edits
           </Button>
-
 
         </Grid.Row>
       </Form>       

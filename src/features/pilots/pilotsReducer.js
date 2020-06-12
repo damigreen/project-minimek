@@ -50,8 +50,8 @@ export function stopEditingIfDeleted(state, payload) {
     return {
       ...state,
       isEditing : false,
-      currenttPilot : null
-    }
+      currenttPilot : null,
+    };
   }
 
   return state;
