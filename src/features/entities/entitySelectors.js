@@ -11,5 +11,6 @@ export const getEntitiesSession = createSelector(
 
 export const getUnsharedEntitiesSession = (state) => {
   const entities = selectEntities(state);
+
   return orm.session(entities);
 }

@@ -68,8 +68,8 @@ export function cancelEditingPilot() {
 }
 
 export function addNewPilot() {
-  return (dispatch, getstate) => {
-    const session = getUnsharedEntitiesSession();
+  return (dispatch, getState) => {
+    const session = getUnsharedEntitiesSession(getState());
     const {Pilot} = session;
 
     const id = cuid();

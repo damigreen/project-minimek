@@ -33,15 +33,6 @@ import { getValueFromEvent } from '../../../common/utils/clientUtils';
 
 
 const RANKS = PILOT_RANKS.map(rank => ({ value: rank, text: rank}));
-// const RANKS = [
-//   {value: "Private", text : "Private"},
-//   {value: "Corporal", text : "Corporal"},
-//   {value: "Sergeant", text : "Sergeant"},
-//   {value: "Lieutenant", text : "Lieutenant"},
-//   {value: "Captain", text : "Captain"},
-//   {value: "Major", text : "Major"},
-//   {value: "Colonel", text : "Colonel"},
-// ];
 
 const SKILL_VALUES = [
   {value : 0, text : 0},
