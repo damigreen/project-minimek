@@ -12,6 +12,7 @@ import { getEntitiesSession } from '../../entities/entitySelectors';
 import { getEditingEntitiesSession } from '../../editing/editingSelectors';
 
 import { selectCurrentPilot, selectIsEditingPilot } from '../pilotsSelector';
+import { PILOT_RANKS } from '../pilotsConstant';
 
 import { 
   startEditingPilot,
@@ -30,15 +31,17 @@ import {
 
 import { getValueFromEvent } from '../../../common/utils/clientUtils';
 
-const RANKS = [
-  {value: "Private", text : "Private"},
-  {value: "Corporal", text : "Corporal"},
-  {value: "Sergeant", text : "Sergeant"},
-  {value: "Lieutenant", text : "Lieutenant"},
-  {value: "Captain", text : "Captain"},
-  {value: "Major", text : "Major"},
-  {value: "Colonel", text : "Colonel"},
-];
+
+const RANKS = PILOT_RANKS.map(rank => ({ value: rank, text: rank}));
+// const RANKS = [
+//   {value: "Private", text : "Private"},
+//   {value: "Corporal", text : "Corporal"},
+//   {value: "Sergeant", text : "Sergeant"},
+//   {value: "Lieutenant", text : "Lieutenant"},
+//   {value: "Captain", text : "Captain"},
+//   {value: "Major", text : "Major"},
+//   {value: "Colonel", text : "Colonel"},
+// ];
 
 const SKILL_VALUES = [
   {value : 0, text : 0},
