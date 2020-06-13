@@ -6,7 +6,7 @@ import {
 } from 'semantic-ui-react';
 
 import UnitInfoForm from './UnitInfoForm';
-import UnitOrganization from './UnitOrganization'
+import UnitOrganizationTree from './UnitOrganizationTree'
 
 class UnitInfo extends Component {
   render() {
@@ -16,7 +16,7 @@ class UnitInfo extends Component {
         <Grid>
           <Grid.Column width={10}>
             <Header as="h3">Units of Organization</Header>
-            <UnitOrganization />
+            <UnitOrganizationTree />
           </Grid.Column>
         </Grid>
         <Grid>

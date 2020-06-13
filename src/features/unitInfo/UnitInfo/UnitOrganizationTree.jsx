@@ -7,7 +7,7 @@ import {
     List,
 } from 'semantic-ui-react';
 
-const UnitOrganization = () => {
+const UnitOrganizationTree = () => {
     return (
       <List size="large">
           <List.Item>
@@ -120,5 +120,5 @@ const UnitOrganization = () => {
     )
 }
 
-export default UnitOrganization;
+export default UnitOrganizationTree;
 
