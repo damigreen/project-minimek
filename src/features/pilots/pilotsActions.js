@@ -14,7 +14,7 @@ import {
 } from './pilotsConstant';
 
 import { selectCurrentPilot, selectIsEditingPilot } from './pilotsSelector';
-import { getUnsharedEntitiesSession } from '../entities/entitySelectors';
+import { getEntitiesSession, getUnsharedEntitiesSession } from '../entities/entitySelectors';
 
 export function selectPilot(pilotID) {
   return (dispatch, getState) => {
@@ -44,26 +44,39 @@ export function startEditingPilot() {
   }
 }
 
-export function stopEditingPilot() {
+
+export function handleStopEditingPilot(applyEdits = true) {
   return (dispatch, getState) => {
     const currentPilot = selectCurrentPilot(getState());
 
-    dispatch({
-      type: PILOT_EDIT_STOP
-    });
-    dispatch(applyItemEdits('Pilot', currentPilot));
+    const session = getEntitiesSession(getState);
+    const {Pilot} = session;
+
+    const isNewPilot = !Pilot.hasId(currentPilot);
+
+    dispatch({type : PILOT_EDIT_STOP});
+
+    if(applyEdits) {
+      dispatch(applyItemEdits('Pilot', currentPilot));
+    }
+
     dispatch(stopEditingItem('Pilot', currentPilot));
+
+    if(isNewPilot) {
+      dispatch({type : PILOT_SELECT, payload : {currentPilot : null}});
+    }
+  }
+}
+
+export function stopEditingPilot() {
+  return (dispatch, getState) => {
+    dispatch(handleStopEditingPilot(true));    
   }
 }
 
 export function cancelEditingPilot() {
   return (dispatch, getState) => {
-    const currentPilot = selectCurrentPilot(getState());
-
-    dispatch({
-      type : PILOT_EDIT_STOP
-    })
-    dispatch(stopEditingItem('Pilot', currentPilot));
+    dispatch(handleStopEditingPilot(false));
   }
 }
 
