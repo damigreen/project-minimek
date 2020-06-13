@@ -3,7 +3,6 @@ import TabBarContainer from '../../features/tabs/TabBarContainer';
 import UnitInfo from '../../features/unitInfo/UnitInfo/';
 import Pilots from '../../features/pilots/Pilots/';
 import Mechs from '../../features/mechs/Mechs/';
-import UnitOrganization from '../../features/unitOrganization/UnitOrganization';
 import Tools from '../../features/tools/Tools/';
 import ModalManager from '../../features/modals/modalManager';
 import ContextMenuManager from '../../features/contextMenu/ContextMenuManager'
@@ -24,7 +23,6 @@ class App extends Component {
             { name: 'unitInfo', label: 'Unit Info', component: UnitInfo },
             { name: 'pilots', label: 'Pilots', component: Pilots },
             { name: 'mechs', label: 'Mechs', component: Mechs },
-            { name: 'unitOrganization', label: 'Unit Organization', component: UnitOrganization },
             { name: 'tools', label: 'Tools', component: Tools }
         ]
                 
