@@ -14,7 +14,7 @@ const ColorPickerButton = ({ value, onClick, disabled=false }) => {
       <div
         style={{
           width : 30,
-          height : 15,
+          height : 20,
           backgroundColor : value,
         }}
       />

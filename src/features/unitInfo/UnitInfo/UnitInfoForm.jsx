@@ -14,6 +14,7 @@ import { getValueFromEvent } from '../../../common/utils/clientUtils';
 
 import ColorPickerButton from '../../../common/components/ColorPicker/ColorPickerButton';
 
+
 const FACTIONS = [
   {value : "cc", text : "Capellan Confederation"},
   {value : "dc", text : "Draconis Combine"},
@@ -64,7 +65,8 @@ class UnitInfoForm extends Component {
     return(
         <Segment attached="bottom">
             <Form sizee="large">
-                <Form.Field name="name" width={6} >
+              <Form.Group>
+                <Form.Field name="name" >
                     <label>Unit Name</label>
                     <input
                       name="name"
@@ -73,7 +75,7 @@ class UnitInfoForm extends Component {
                       onChange={this.onNameChanged}
                       />
                 </Form.Field>
-                <Form.Field name="Affiliation" width={6} >
+                <Form.Field name="Affiliation" width={14} >
                     <label>Affiliation</label>
                     <Dropdown 
                         name="affiliation"
@@ -90,6 +92,8 @@ class UnitInfoForm extends Component {
                     onClick={this.onColorClicked}
                   />
                 </Form.Field>
+
+              </Form.Group>
             </Form>
         </Segment>
     )
