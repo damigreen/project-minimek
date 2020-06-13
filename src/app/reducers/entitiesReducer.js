@@ -10,24 +10,24 @@ export function loadData(state, payload) {
   const session = orm.session(state);
 
   // Get a reference to the correct version of the Pilot class for this session
-  const { Pilot, Mech, MechDesign } = session;
+  const { Unit, Pilot, Mech, MechDesign } = session;
   
-  const { pilots, designs, mechs } = payload;
+  const { unit, designs } = payload;
 
-  [Pilot, Mech, MechDesign].forEach(modelType => {
+  [Unit, Pilot, Mech, MechDesign].forEach(modelType => {
     modelType.all().toModelArray().forEach(model => model.delete());
   })
 
-  // Queue up creation commands for each pilot entry
-  pilots.forEach(pilot => Pilot.parse(pilot));
-  mechs.forEach(mech => Mech.parse(mech));
+  // Imutably update the Unit session state as we insert items
+  Unit.parse(unit);
+
   designs.forEach(design => MechDesign.parse(design));
   
-  // apply the queue update and return the updated 'tables'
+  // Apply the queue update
+  // Return the new 'tables' object containing the updates
   return session.state;
 }
 
-// export default entitiesReducer()
 
 export default createReducer(initialState, {
   [DATA_LOADED] : loadData

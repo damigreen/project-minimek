@@ -15,8 +15,6 @@ export default class Unit extends Model {
 
   static parse(unitData) {
     const {Pilot, Mech} = this.session;
-    console.log(Pilot)
-    console.log(Mech)
 
     const parseData = {
       ...unitData,
