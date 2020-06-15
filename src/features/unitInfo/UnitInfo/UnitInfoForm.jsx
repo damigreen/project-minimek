@@ -6,7 +6,7 @@ import {
   Segment,
 } from 'semantic-ui-react';
 
-import { selectUnitInfo } from '../unitInfoSelector';
+import { selectCurrentUnitInfo } from '../unitInfoSelector';
 import { updateUnitInfo, setUnitColor } from '../unitInfoActions';
 import { showColorPicker } from '../../../common/components/ColorPicker/colorPickerAction';
 
@@ -26,7 +26,7 @@ const mapState = (state) => {
 
   const factions = Faction.all().toRefArray();
 
-  const unitInfo = selectUnitInfo(state);
+  const unitInfo = selectCurrentUnitInfo(state);
 
   return {
     factions,
@@ -64,8 +64,13 @@ class UnitInfoForm extends Component {
 
   render() {
     const {unitInfo, factions} = this.props;
-    const {name, affiliation, color} = unitInfo;
-    
+    const isDisplayUnit = Boolean(unitInfo);
+    let name="", affiliation=null, color=null;
+
+    if(isDisplayUnit) {
+      ({name, affiliation, color} = unitInfo);
+    }
+
     const displayFactions = factions.map(faction => {
       return {
         value : faction.id,
