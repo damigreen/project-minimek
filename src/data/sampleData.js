@@ -224,6 +224,17 @@ const sampleData = {
             weight : 75,
         },
     ],
+
+    factions : [
+        {id : "cc", name : "Capellan Confederation"},
+        {id : "dc", name : "Draconis Combine"},
+        {id : "elh", name : "Eridani Light Horse"},
+        {id : "fs", name : "Federated Suns"},
+        {id : "fwl", name : "Free Worlds League"},
+        {id : "hr", name : "Hansen's Roughriders"},
+        {id : "lc", name : "Lyran Commonwealth"},
+        {id : "wd", name : "Wolf's Dragoons"},
+      ]
 }
 
 export default sampleData;

@@ -10,17 +10,18 @@ export function loadData(state, payload) {
   const session = orm.session(state);
 
   // Get a reference to the correct version of the Pilot class for this session
-  const { Unit, Pilot, Mech, MechDesign } = session;
+  const { Unit, Faction, Pilot, Mech, MechDesign } = session;
   
-  const { unit, designs } = payload;
+  const { unit, factions, designs } = payload;
 
-  [Unit, Pilot, Mech, MechDesign].forEach(modelType => {
+  [Unit, Faction, Pilot, Mech, MechDesign].forEach(modelType => {
     modelType.all().toModelArray().forEach(model => model.delete());
   })
 
   // Imutably update the Unit session state as we insert items
   Unit.parse(unit);
 
+  factions.forEach(faction => Faction.parse(faction));
   designs.forEach(design => MechDesign.parse(design));
   
   // Apply the queue update
