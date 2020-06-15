@@ -1,6 +1,6 @@
 import { Model, attr, many } from  'redux-orm';
 
-export class Lance extends Model {
+export default class Lance extends Model {
   static get fields() {
     return {
       id : attr(),
