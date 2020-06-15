@@ -20,7 +20,6 @@ const combinedReducer = combineReducers({
   editingEntities: editingEntitiesReducer,
   pilots: pilotsReducer,
   mechs: mechsReducer,
-  unitInfo : unitInfoReducer,
   tabs : tabReducer,
   modals : modalReducer,
   contextMenu: contextMenuReducer,
@@ -28,9 +27,10 @@ const combinedReducer = combineReducers({
 
 
 const rootReducer = reduceReducers(
- combinedReducer,
- entityCrudReducer,
- editingFeatureReducer
+  entityCrudReducer,
+  editingFeatureReducer,
+  combinedReducer,
+  unitInfoReducer
 );
 
 export default rootReducer;

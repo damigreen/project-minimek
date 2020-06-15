@@ -1,42 +1,43 @@
-import { createReducer } from '../../common/utils/reducerUtils';
-import { DATA_LOADED } from '../tools/toolConstant';
+import orm from '../../app/orm';
+import { createConditionalSliceReducer } from '../../common/utils/reducerUtils';
+
 import {
   UNIT_INFO_UPDATE,
   UNIT_INFO_SET_COLOR,
-} from './unitInfoConstants'
+} from './unitInfoConstants';
 
-const initialState = {
-  name : "N/A",
-  affiliation : "",
-  color : "green"
-};
-
-export function dataLoaded(state, payload) {
-  const {unit} = payload;
-
-  return unit;
-}
 
 export function updateUnitInfo(state, payload) {
-  return {
-    ...state,
-    ...payload,
+  const session = orm.session(state);
+  const {Unit} = session;
+  
+  const currentUnit = Unit.all().first();
+  
+  if(currentUnit) {
+    currentUnit.update(payload);
   }
+
+  return session.state;
 }
+
 
 // Create an action to set the unit color
 export function setUnitColor(state, payload) {
   const {color} = payload;
+  const session = orm.session(state);
+  const {Unit} = session;
 
-  return {
-    ...state,
-    color
+  const currentUnit = Unit.all().first();
+
+  if(currentUnit) {
+    currentUnit.color = color;
   }
+
+  return session.state;
 }
 
 
-export default createReducer(initialState, {
-  [DATA_LOADED] : dataLoaded,
+export default createConditionalSliceReducer('entities', {
   [UNIT_INFO_UPDATE] : updateUnitInfo,
   [UNIT_INFO_SET_COLOR] : setUnitColor,
 });

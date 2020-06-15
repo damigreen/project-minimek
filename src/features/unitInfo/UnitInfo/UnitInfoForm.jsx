@@ -16,9 +16,6 @@ import ColorPickerButton from '../../../common/components/ColorPicker/ColorPicke
 
 import { getEntitiesSession } from '../../entities/entitySelectors';
 
-// const mapState = state => ({
-//   unitInfo : selectUnitInfo(state)
-// });
 
 const mapState = (state) => {
   const session = getEntitiesSession(state);
