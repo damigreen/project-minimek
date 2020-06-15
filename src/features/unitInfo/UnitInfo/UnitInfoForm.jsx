@@ -64,9 +64,9 @@ class UnitInfoForm extends Component {
 
     return(
         <Segment attached="bottom">
-            <Form sizee="large">
+            <Form size="large">
               <Form.Group>
-                <Form.Field name="name" >
+                <Form.Field name="name" width={10}>
                     <label>Unit Name</label>
                     <input
                       name="name"
@@ -75,7 +75,7 @@ class UnitInfoForm extends Component {
                       onChange={this.onNameChanged}
                       />
                 </Form.Field>
-                <Form.Field name="Affiliation" width={14} >
+                <Form.Field name="Affiliation" width={10} >
                     <label>Affiliation</label>
                     <Dropdown 
                         name="affiliation"

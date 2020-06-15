@@ -20,14 +20,13 @@ class UnitInfo extends Component {
           </Grid.Column>
         </Grid>
         <Grid>
-          <Grid.Column width={6}>
+          <Grid.Column width={10}>
             <Header as="h3">Edit Units</Header>
             <UnitInfoForm />
           </Grid.Column>
         </Grid>
 
       </Segment>
-
     )
   }
 
