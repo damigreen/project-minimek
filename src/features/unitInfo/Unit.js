@@ -6,7 +6,7 @@ export default class Unit extends Model {
     return {
       id : attr(),
       name : attr(),
-      affiliation : attr(),
+      affiliation : fk('Faction'),
       color : attr(),
       pilots : many('Pilot'),
       mechs : many('Mech'),
