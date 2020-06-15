@@ -35,14 +35,11 @@ const LancePilot = ({ pilot = UNKNOWN_PILOT, mech = UNKNOWN_MECH }) => {
   const { name, rank } = pilot;
   const {id : mechModel, name : mechName } = mech;
 
-
   return (
     <List.Item>
       <List.Icon name="User">
         <List.Content>
-          <List.Header>
-            {rank} {name} - {mechModel} {mechName}
-          </List.Header>
+          <List.Header>{rank} {name} - {mechModel} {mechName}</List.Header>
         </List.Content>
       </List.Icon>
     </List.Item>
