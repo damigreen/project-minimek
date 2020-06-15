@@ -14,22 +14,26 @@ import { getValueFromEvent } from '../../../common/utils/clientUtils';
 
 import ColorPickerButton from '../../../common/components/ColorPicker/ColorPickerButton';
 
+import { getEntitiesSession } from '../../entities/entitySelectors';
 
-const FACTIONS = [
-  {value : "cc", text : "Capellan Confederation"},
-  {value : "dc", text : "Draconis Combine"},
-  {value : "elh", text : "Eridani Light Horse"},
-  {value : "fs", text : "Federated Suns"},
-  {value : "fwl", text : "Free Worlds League"},
-  {value : "hr", text : "Hansen's Roughriders"},
-  {value : "lc", text : "Lyran Commonwealth"},
-  {value : "wd", text : "Wolf's Dragoons"},
-];
+// const mapState = state => ({
+//   unitInfo : selectUnitInfo(state)
+// });
 
+const mapState = (state) => {
+  const session = getEntitiesSession(state);
+  const { Faction } = session;
 
-const mapState = state => ({
-  unitInfo : selectUnitInfo(state)
-});
+  const factions = Faction.all().toRefArray();
+
+  const unitInfo = selectUnitInfo(state);
+
+  return {
+    factions,
+    unitInfo,
+  };
+}
+
 
 const actions = {
   updateUnitInfo,
@@ -59,8 +63,15 @@ class UnitInfoForm extends Component {
   }
 
   render() {
-    const {unitInfo} = this.props;
+    const {unitInfo, factions} = this.props;
     const {name, affiliation, color} = unitInfo;
+    
+    const displayFactions = factions.map(faction => {
+      return {
+        value : faction.id,
+        text : faction.name,
+      };
+    })
 
     return(
         <Segment attached="bottom">
@@ -80,7 +91,7 @@ class UnitInfoForm extends Component {
                     <Dropdown 
                         name="affiliation"
                         selection 
-                        options={FACTIONS}
+                        options={displayFactions}
                         value={affiliation}
                         onChange={this.onAffiliationChanged}
                     />
