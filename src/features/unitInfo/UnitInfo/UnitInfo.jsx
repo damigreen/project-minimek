@@ -6,7 +6,8 @@ import {
 } from 'semantic-ui-react';
 
 import UnitInfoForm from './UnitInfoForm';
-import UnitOrganizationTree from './UnitOrganizationTree'
+import UnitOrganizationTree from '../UnitOrganizationTree/UnitOrganizationTree';
+
 
 class UnitInfo extends Component {
   render() {
