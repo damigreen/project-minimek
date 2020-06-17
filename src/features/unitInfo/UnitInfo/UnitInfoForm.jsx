@@ -79,7 +79,7 @@ class UnitInfoForm extends Component {
         <Segment attached="bottom">
             <Form size="large">
               <Form.Group>
-                <Form.Field name="name" width={10}>
+                <Form.Field name="name">
                     <label>Unit Name</label>
                     <input
                       name="name"
@@ -88,7 +88,10 @@ class UnitInfoForm extends Component {
                       onChange={this.onNameChanged}
                       />
                 </Form.Field>
-                <Form.Field name="Affiliation" width={10} >
+              </Form.Group>
+
+              <Form.Group>
+                <Form.Field name="Affiliation" width={12} >
                     <label>Affiliation</label>
                     <Dropdown 
                         name="affiliation"
@@ -103,10 +106,11 @@ class UnitInfoForm extends Component {
                   <ColorPickerButton
                     value={color}
                     onClick={this.onColorClicked}
+                    disabled={!isDisplayUnit}
                   />
                 </Form.Field>
-
               </Form.Group>
+
             </Form>
         </Segment>
     )

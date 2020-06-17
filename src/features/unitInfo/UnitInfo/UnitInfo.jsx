@@ -16,17 +16,19 @@ class UnitInfo extends Component {
       <Segment>
         <Grid>
           <Grid.Column width={10}>
-            <Header as="h3">Units of Organization</Header>
+            <Header as="h3">Units Table of Organization</Header>
+            <Segment>
             <UnitOrganizationTree />
+            </Segment>
           </Grid.Column>
-        </Grid>
-        <Grid>
-          <Grid.Column width={10}>
-            <Header as="h3">Edit Units</Header>
-            <UnitInfoForm />
-          </Grid.Column>
-        </Grid>
 
+          <Grid.Column width={6}>
+            <Header as="h3">Edit Units</Header>
+            <Segment>
+            <UnitInfoForm />
+            </Segment>
+          </Grid.Column>
+        </Grid>
       </Segment>
     )
   }
