@@ -27,21 +27,20 @@ const mapState = (state, ownProps) => {
   return {pilot, mech};
 }
 
-const UNKNOWN_PILOT = {name : 'Unknown', rank : ""}
-const UNKNOWN_MECH = {id : 'N/A', name : ""}
+const UNKNOWN_PILOT = {name : 'Unknown', rank : ""};
+const UNKNOWN_MECH = {id : 'N/A', name : ""};
 
 
 const LancePilot = ({ pilot = UNKNOWN_PILOT, mech = UNKNOWN_MECH }) => {
   const { name, rank } = pilot;
-  const {id : mechModel, name : mechName } = mech;
+  const { id : mechModel, name : mechName } = mech;
 
   return (
     <List.Item>
-      <List.Icon name="User">
-        <List.Content>
-          <List.Header>{rank} {name} - {mechModel} {mechName}</List.Header>
-        </List.Content>
-      </List.Icon>
+      <List.Icon name="user" />
+      <List.Content>
+        <List.Header>{rank} {name} - {mechModel} {mechName}</List.Header>
+      </List.Content>
     </List.Item>
   )
 }
