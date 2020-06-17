@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/mini-mekhq/static/css/main.27805de1.chunk.css",
+    "main.js": "/mini-mekhq/static/js/main.59135806.chunk.js",
+    "main.js.map": "/mini-mekhq/static/js/main.59135806.chunk.js.map",
+    "runtime-main.js": "/mini-mekhq/static/js/runtime-main.cee1db48.js",
+    "runtime-main.js.map": "/mini-mekhq/static/js/runtime-main.cee1db48.js.map",
+    "static/css/2.67b3f679.chunk.css": "/mini-mekhq/static/css/2.67b3f679.chunk.css",
+    "static/js/2.b9e0e586.chunk.js": "/mini-mekhq/static/js/2.b9e0e586.chunk.js",
+    "static/js/2.b9e0e586.chunk.js.map": "/mini-mekhq/static/js/2.b9e0e586.chunk.js.map",
+    "index.html": "/mini-mekhq/index.html",
+    "precache-manifest.d8c195a0a6a1e2181c19c582e7c1972a.js": "/mini-mekhq/precache-manifest.d8c195a0a6a1e2181c19c582e7c1972a.js",
+    "service-worker.js": "/mini-mekhq/service-worker.js",
+    "static/css/2.67b3f679.chunk.css.map": "/mini-mekhq/static/css/2.67b3f679.chunk.css.map",
+    "static/css/main.27805de1.chunk.css.map": "/mini-mekhq/static/css/main.27805de1.chunk.css.map",
+    "static/js/2.b9e0e586.chunk.js.LICENSE.txt": "/mini-mekhq/static/js/2.b9e0e586.chunk.js.LICENSE.txt",
+    "static/media/semantic.min.css": "/mini-mekhq/static/media/outline-icons.ef60a4f6.woff",
+    "static/media/logos.svg": "/mini-mekhq/static/media/logos.7c7c539a.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.cee1db48.js",
+    "static/css/2.67b3f679.chunk.css",
+    "static/js/2.b9e0e586.chunk.js",
+    "static/css/main.27805de1.chunk.css",
+    "static/js/main.59135806.chunk.js"
+  ]
+}
