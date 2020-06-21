@@ -8,7 +8,6 @@ import ModalManager from '../../features/modals/modalManager';
 import ContextMenuManager from '../../features/contextMenu/ContextMenuManager'
 
 import './App.css';
-import logo from './logos.svg';
 
 import {
   Header,
@@ -31,8 +30,7 @@ class App extends Component {
             <ModalManager />
             <ContextMenuManager />
             <div className="App-header">
-            <img src={logo} className="App-logo" alt="logo"/>
-            <Header inverted as="h1">Mini-MekHQ</Header>
+            <Header inverted as="h1">Project Mini-Mek</Header>
         </div>
         <Container>
             <TabBarContainer tabs={tabs} size='massive' />
